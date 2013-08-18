@@ -1,4 +1,4 @@
-bip-pod-flow
+![Flow](flow.png) bip-pod-flow
 =======
 
 Flow Control Pod for [Bipio](https://bip.io).  Handles transform filtering, 
@@ -9,13 +9,15 @@ and flow control across the delivery graph ([Hub](https://bip.io/docs/resource/r
 
 ## Installation
 
-From bipio server install directory
+From bipio server root directory
 
-    npm install bip-pod-flow
+    npm install bip-pod-facebook
+    ./tools/pod-install.js -a facebook [-u optional account-wide channel auto install]
 
-Auto install script will register the pod with the bipio server and add sparse
+The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'flow'.
+keyed to 'facebook', based on the default config in the pod constructor.  It will also move the
+pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
