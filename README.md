@@ -11,12 +11,12 @@ and flow control across the delivery graph ([Hub](https://bip.io/docs/resource/r
 
 From bipio server root directory
 
-    npm install bip-pod-facebook
-    ./tools/pod-install.js -a facebook [-u optional account-wide channel auto install]
+    npm install bip-pod-flow
+    ./tools/pod-install.js -a flow [-u optional account-wide channel auto install]
 
 The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'facebook', based on the default config in the pod constructor.  It will also move the
+keyed to 'flow', based on the default config in the pod constructor.  It will also move the
 pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
