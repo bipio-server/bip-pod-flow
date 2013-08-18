@@ -28,6 +28,7 @@ var Pod = require('bip-pod'),
 Flow.add(require('./match.js'));
 Flow.add(require('./xml2json.js'));
 Flow.add(require('./nonce.js'));
+Flow.add(require('./ksplit.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
