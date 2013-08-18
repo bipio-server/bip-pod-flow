@@ -4,7 +4,7 @@ bip-pod-flow
 Flow Control Pod for [Bipio](https://bip.io).  Handles transform filtering, 
 de-duplication, token generation, representation transform transparently.
 
-Basically, for [Pipeline](http://en.wikipedia.org/wiki/Pipeline_(software)) filtering
+Basically, for [Pipeline](http://en.wikipedia.org/wiki/Pipeline_(software) ) filtering
 and flow control across the delivery graph ([Hub](https://bip.io/docs/resource/rest/bip#resource_rest_bip_hubs))
 
 ## Installation
