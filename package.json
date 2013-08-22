@@ -1,7 +1,7 @@
 {
     "name": "bip-pod-flow",
-    "version": "0.0.1",
-    "description": "Imgur Pod for Bipio",
+    "version": "0.0.2",
+    "description": "Pipeline Flow Pod for Bipio",
     "keywords": [
     "bip",
     "bipio",
@@ -30,7 +30,5 @@
     },
     "engines": {
         "node": ">= 0.10.0"
-    },
-    "_id": "bip-pod-flow@0.0.1",
-    "_from": "bip-pod-flow@>=0.0.0"
+    }
 }
