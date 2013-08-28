@@ -35,9 +35,9 @@ Conditionally forwards or discards messages matching certain search patterns
 }
 ```
 
-### xml2json
+### xml2json (singleton)
 
-Given an XML document, converts it to usable JSON exports. (singleton)
+Given an XML document, converts it to usable JSON exports.
 
 ```
 "action" : "flow.xml2json",
@@ -51,12 +51,20 @@ Generate a Random String inline. (singleton)
 "action" : "flow.nonce",
 ```
 
-### ksplit
+### ksplit (singleton)
 
-Given an JSON document, generates an export for each row (singleton)
+Given an JSON document, generates an export for each row
 
 ```
 "action" : "flow.ksplit",
+```
+
+### blackhole (singleton)
+
+Drops a message on the floor. Ends delivery
+
+```
+"action" : "flow.blackhole",
 ```
 
 [Bipio Docs](https://bip.io/docs/pods/flow)
