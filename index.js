@@ -29,7 +29,7 @@ Flow.add(require('./match.js'));
 Flow.add(require('./xml2json.js'));
 Flow.add(require('./nonce.js'));
 Flow.add(require('./ksplit.js'));
-Flow.add(require('./hole.js'));
+Flow.add(require('./blackhole.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
