@@ -22,7 +22,10 @@ var Pod = require('bip-pod'),
     Flow = new Pod({
         name : 'flow',
         description : 'Flow',
-        description_long : 'Control flows, filtering, token generation for hubs, inline'
+        description_long : 'Control flows, filtering, token generation for hubs, inline',
+        dataSources : [ 
+            require('./models/counter'),
+        ]
     });
 
 Flow.add(require('./match.js'));
@@ -30,6 +33,7 @@ Flow.add(require('./xml2json.js'));
 Flow.add(require('./nonce.js'));
 Flow.add(require('./ksplit.js'));
 Flow.add(require('./blackhole.js'));
+Flow.add(require('./counter.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
