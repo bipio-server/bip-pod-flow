@@ -34,6 +34,7 @@ Flow.add(require('./nonce.js'));
 Flow.add(require('./ksplit.js'));
 Flow.add(require('./blackhole.js'));
 Flow.add(require('./counter.js'));
+Flow.add(require('./text2json.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;

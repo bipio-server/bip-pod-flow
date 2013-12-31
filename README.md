@@ -21,51 +21,7 @@ pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
-## Actions
-
-### match
-
-Conditionally forwards or discards messages matching certain search patterns
-
-```
-"action" : "flow.match",
-"config" : {
-    "accept_on" : "special pattern",
-    "discard_on" : "spammy pattern"
-}
-```
-
-### xml2json (singleton)
-
-Given an XML document, converts it to usable JSON exports.
-
-```
-"action" : "flow.xml2json",
-```
-
-### nonce
-
-Generate a Random String inline. (singleton)
-
-```
-"action" : "flow.nonce",
-```
-
-### ksplit (singleton)
-
-Given an JSON document, generates an export for each row
-
-```
-"action" : "flow.ksplit",
-```
-
-### blackhole (singleton)
-
-Drops a message on the floor. Ends delivery
-
-```
-"action" : "flow.blackhole",
-```
+## Documentation
 
 [Bipio Docs](https://bip.io/docs/pods/flow)
 
@@ -75,7 +31,7 @@ BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.h
 
 Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3. 
 
-Bipio may not be used for Commercial purposes by an entity who has not secured a Bipio Commercial OEM License.  To secure a Commercial OEM License for Bipio,
+If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible.  To secure a Commercial OEM License for Bipio,
 please [reach us](mailto:enquiries@cloudspark.com.au)
 
 ![Cloud Spark](http://www.cloudspark.com.au/cdn/static/img/cs_logo.png "Cloud Spark - Rapid Web Stacks Built Beautifully")

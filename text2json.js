@@ -1,0 +1,62 @@
+/**
+ *
+ * The Bipio Flow Pod.  text2json action definition
+ * ---------------------------------------------------------------
+ *
+ * @author Michael Pearson <michael@cloudspark.com.au>
+ * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+function Text2JSON() {
+  this.name = 'text2json';
+  this.description = 'Text to JSON',
+  this.description_long = 'Converts a JSON text body into its equivalent export',
+  this.trigger = false;
+  this.singleton = true;
+}
+
+Text2JSON.prototype = {};
+
+Text2JSON.prototype.getSchema = function() {
+  return {
+    "imports": {
+      "properties" : {
+        "body" : {
+          "type" : String,
+          "description" : "JSON String"
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Invokes (runs) the action.
+ */
+Text2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  if (imports.body) {
+    try {
+      var exports = JSON.parse(imports.body);
+      next(false, exports);
+    } catch (e) {
+      this.$resource.log('parse error ' + e, channel, 'error');
+      next(true);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+module.exports = Text2JSON;
