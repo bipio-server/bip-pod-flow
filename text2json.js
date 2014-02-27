@@ -47,9 +47,10 @@ Text2JSON.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 Text2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.body) {
+  
+  if (imports.body) {    
     try {
-      var exports = JSON.parse(imports.body);
+      var exports = JSON.parse(imports.body.replace(/\n/g, ''));
       next(false, exports);
     } catch (e) {
       this.$resource.log('parse error ' + e, channel, 'error');
