@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Flow Pod.  keysplitter action definition
+ * The Bipio Flow Pod
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
@@ -20,40 +20,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function KeySplitter(podConfig) {
-  this.name = 'ksplit';
-  this.description = 'Splits a JSON document by row',
-  this.description_long = 'Given an JSON document, generates an export for each row',
+function LineSplitter(podConfig) {
+  this.name = 'lsplit';
+  this.description = 'Split Text by Line',
+  this.description_long = 'Generates an export for every line in a text document (Windows/Mac/Linux)',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
 }
 
-KeySplitter.prototype = {};
+LineSplitter.prototype = {};
 
-KeySplitter.prototype.getSchema = function() {
+LineSplitter.prototype.getSchema = function() {
   return {
     "imports": {
       "properties" : {
-        "rows" : {
+        "body" : {
           "type" : "string",
-          "description" : "JSON Object"
+          "description" : "Text Body"
         }
       }
     },
     "exports": {
       "properties" : {
-        "key" : {
-          "type" : "string",
-          "description" : "Source Key"
-        },
         "index" : {
           "type" : "integer",
-          "description" : "Item Offset"
+          "description" : "Line Number"
         },
         "value" : {
-          "type" : "mixed",
-          "description" : "Key Value"
+          "type" : "string",
+          "description" : "Line Value"
         }        
       }
     }
@@ -63,24 +59,23 @@ KeySplitter.prototype.getSchema = function() {
 /**
  * Invokes (runs) the action.
  */
-KeySplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (Object.keys(imports).length > 0) {
-    if (imports.hasOwnProperty(key)) {
-      var i = 0;
-      for (var key in imports) {
-        if (imports.hasOwnProperty(key)) {
-          next(
-            false, 
-            {
-              index : i,
-              key : key,
-              value : imports[key]
-            }
-          );
-          i++;
-        }
+LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  if (imports.body) {
+    var lines = imports.body.split(/[\n(?\r)]/),
+      line;
+
+    for (var i = 0; i < lines.length; i++) {
+      line = lines[i].trim();
+      if (line) {
+        next(
+          false, 
+          {
+            index : i,
+            value : line
+          }          
+        );
       }
-    }
+    }   
   } else {
     // silent forward
     next(false, {});
@@ -88,4 +83,4 @@ KeySplitter.prototype.invoke = function(imports, channel, sysImports, contentPar
 }
 
 // -----------------------------------------------------------------------------
-module.exports = KeySplitter;
+module.exports = LineSplitter;

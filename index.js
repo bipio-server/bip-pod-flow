@@ -32,6 +32,7 @@ Flow.add(require('./match.js'));
 Flow.add(require('./xml2json.js'));
 Flow.add(require('./nonce.js'));
 Flow.add(require('./ksplit.js'));
+Flow.add(require('./lsplit.js'));
 Flow.add(require('./blackhole.js'));
 Flow.add(require('./counter.js'));
 Flow.add(require('./text2json.js'));
