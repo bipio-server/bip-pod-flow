@@ -3,7 +3,7 @@
  * The Bipio Flow Pod.  Flow Actions and Content Emitters
  * 
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,10 @@ Flow.add(require('./lsplit.js'));
 Flow.add(require('./blackhole.js'));
 Flow.add(require('./counter.js'));
 Flow.add(require('./text2json.js'));
+Flow.add(require('./entity_encode.js'));
+Flow.add(require('./entity_decode.js'));
+
+Flow.add(require('./file_gzip.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
