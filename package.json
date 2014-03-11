@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-flow",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Pipeline Flow Pod for Bipio",
   "keywords": [
     "bip",
