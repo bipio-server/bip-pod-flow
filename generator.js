@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Flow Pod.  nonce action definition
+ * The Bipio Flow Pod.  generator action definition
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
@@ -20,57 +20,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Nonce(podConfig) {
-  this.name = 'nonce';
-  this.description = 'Generate a Random String',
-  this.description_long = 'Generate a Random 64 bit string',
-  this.trigger = false;
-  this.singleton = true;
+function Generator(podConfig) {
+  this.name = 'generator';
+  this.description = 'Generate a Payload',
+  this.description_long = 'Generates a Payload that can be processed by a Trigger Bip',
+  this.trigger = true;
+  this.singleton = false;
   this.podConfig = podConfig;
 }
 
-Nonce.prototype = {};
+Generator.prototype = {};
 
-Nonce.prototype.getSchema = function() {
+Generator.prototype.getSchema = function() {
   return {
+    'config' : {
+      properties : {
+        'payload' : {
+          type : "string",
+          description : "Payload"
+        }
+      }
+    },
     'exports' : {
       properties : {
-        'nonce' : {
+        'payload' : {
           type : "string",
-          description : "random string"
+          description : "Payload"
         }
       }
     }
   }
 }
 
-function randStr (bits) {
-  var chars, rand, i, ret;
-
-  chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
-  ret = '';
-
-  // in v8, Math.random() yields 32 pseudo-random bits (in spidermonkey it gives 53)
-  while (bits > 0) {
-    // 32-bit integer
-    rand = Math.floor(Math.random() * 0x100000000);
-    // base 64 means 6 bits per character, so we use the top 30 bits from rand to give 30/6=5 characters.
-    for (i = 26; i > 0 && bits > 0; i -= 6, bits -= 6) {
-      ret += chars[0x3F & rand >>> i];
-    }
-  }
-
-  return ret;
-}
-
 /**
  * Invokes (runs) the action.
  */
-Nonce.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Generator.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   next(false, {
-    'nonce' : randStr(64)
+    'payload' : channel.config.payload
   });
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Nonce;
+module.exports = Generator;

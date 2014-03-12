@@ -38,7 +38,7 @@ Flow.add(require('./counter.js'));
 Flow.add(require('./text2json.js'));
 Flow.add(require('./entity_encode.js'));
 Flow.add(require('./entity_decode.js'));
-
+Flow.add(require('./generator.js'));
 Flow.add(require('./file_gzip.js'));
 
 // -----------------------------------------------------------------------------
