@@ -58,7 +58,7 @@ FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts,
       inFile.pipe(gzip).pipe(outFile).on('close', function() {
         fs.stat(localPath, function(err, stat) {
           if (err) {
-            next(err)
+            deferred.reject(err);
           } else {
             file.type = 'application/gzip';
             file.localpath = localPath;
@@ -66,8 +66,8 @@ FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts,
             file.size = stat.size;
 
             fs.unlink(inFilePath, function(err) {
-              if (err) {
-                next(err)
+              if (err) {                
+                deferred.reject(err);
               } else {
                 deferred.resolve();
               }
