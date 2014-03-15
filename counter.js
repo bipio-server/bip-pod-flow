@@ -32,6 +32,27 @@ Counter.prototype = {};
 
 Counter.prototype.getSchema = function() {
   return {
+    'imports' : {
+      properties : {
+        'group_by' : {
+          type : "string",
+          description : "Group By"
+        },
+        'increment_by' : {
+          type : "integer",
+          description : "Increment By",
+          "default" : 1
+        }
+      }
+    },
+    'exports' : {
+      properties : {
+        'new_count' : {
+          type : "integer",
+          description : "New Count"
+        }
+      }
+    },
     'renderers' : {
       'get_count' : {
         description : 'Get Count',
@@ -50,14 +71,14 @@ Counter.prototype.setup = function(channel, accountInfo, next) {
   modelName = this.$resource.getDataSourceName('counter');
 
   (function(channel, accountInfo, next) {
-    var feedStruct = {
+    var counterStruct = {
       owner_id : channel.owner_id,
       channel_id : channel.id,
       last_update : app.helper.nowUTCSeconds(),
       counter : 0
     }
 
-    model = dao.modelFactory(modelName, feedStruct, accountInfo);
+    model = dao.modelFactory(modelName, counterStruct, accountInfo);
     dao.create(model, function(err, result) {
       if (err) {
         log(err, channel, 'error');
@@ -90,7 +111,7 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
 
   if ('get_count' === method) {
     dao.find(
-      modelName, 
+      modelName,
       {
         owner_id : channel.owner_id,
         channel_id : channel.id
@@ -104,33 +125,65 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
           res.send({
             last_update : result.last_update,
             count : result.count
-          });      
+          });
         }
       }
     );
-    
   }
 }
 
-/**
- * Invokes (runs) the action.
- */
 Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var $resource = this.$resource,
   self = this,
   dao = $resource.dao,
-  modelName = this.$resource.getDataSourceName('counter');
-
-  dao.accumulateFilter(
-    modelName, 
-    {
+  modelName = this.$resource.getDataSourceName('counter'),
+  filter = {
       owner_id : channel.owner_id,
-      channel_id : channel.id
+      channel_id : channel.id,
+      group : imports.group_by
     },
-    'count'
-    );   
-  
-  next(false, {});
+  setter = {
+    last_update : app.helper.nowUTCSeconds()
+  },
+  inc = imports.increment_by || 1;
+
+  if (imports.group_by) {
+    setter.group = imports.group_by;
+  }
+
+  dao.accumulateFilter(modelName, filter, 'count', setter, function(err) {
+    if (err) {
+      next(err);
+    } else {
+      // check if it was an upsert and give it an id if none present (yuck)
+      dao.find(modelName, filter, function(err, result) {
+        if (err) {
+          next(err);
+        } else {
+          // pretty gross, is there a better way?
+          if (!result.id) {
+            dao.updateColumn(
+              modelName, 
+              filter,
+              {              
+                id : app.helper.uuid().v4(),
+                created : app.helper.nowUTCSeconds()
+              },
+              function(err) {
+                if (err) {
+                  next(err);
+                } else {
+                  next(false, { new_count : result.count });
+                }
+              }
+            );
+          } else {
+            next(false, { new_count : result.count });
+          }
+        }
+      });
+    }
+  }, inc);
 }
 
 // -----------------------------------------------------------------------------

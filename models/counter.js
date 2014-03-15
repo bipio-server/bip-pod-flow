@@ -31,13 +31,13 @@ Counter = {
             renderable : true,
             writable : false
         },
-        /*
+
         group : {
           type : String,
           renderable : true,
           writable : false
         },
-*/
+
         // last build time
         count : {
             type : Number,
@@ -48,7 +48,8 @@ Counter = {
     },
     compoundKeyContraints : {
         channel_id : 1,
-        owner_id :1 
+        owner_id :1,
+        group : 1
     }
 };
 

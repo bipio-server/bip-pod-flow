@@ -40,6 +40,7 @@ Flow.add(require('./entity_encode.js'));
 Flow.add(require('./entity_decode.js'));
 Flow.add(require('./generator.js'));
 Flow.add(require('./file_gzip.js'));
+Flow.add(require('./regex_replace.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
