@@ -3,7 +3,7 @@ Counter = {
     entitySchema : {
         id: {
             type: String,
-            renderable: false,
+            renderable: true,
             writable: false
         },
 

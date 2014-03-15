@@ -109,26 +109,35 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
     log = $resource.log,
     modelName = this.$resource.getDataSourceName('counter');
 
-  if ('get_count' === method) {
-    dao.find(
+  if ('get_count' === method) {   
+
+     var currentPage = parseInt(req.query.page) || 1,
+        currentPageSize = parseInt(req.query.page_size) || 10,
+        orderBy = ['entity_created', 'desc'];
+        
+    dao.list(
       modelName,
+      null,
+      currentPageSize,
+      currentPage,
+      orderBy,
       {
         owner_id : channel.owner_id,
         channel_id : channel.id
       },
-      function(err, result) {
+      function(err, modelName, results) {
         if (err) {
-          log(err, channel);
+          log(err, 'channel', 'error');
           res.send(500);
         } else {
           res.contentType(self.getSchema().renderers[method].contentType);
-          res.send({
-            last_update : result.last_update,
-            count : result.count
-          });
-        }
+          res.send(results); 
+        }        
       }
-    );
+    );      
+    
+  } else {
+    res.send(404);
   }
 }
 
