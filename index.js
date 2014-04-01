@@ -41,6 +41,8 @@ Flow.add(require('./entity_decode.js'));
 Flow.add(require('./generator.js'));
 Flow.add(require('./file_gzip.js'));
 Flow.add(require('./regex_replace.js'));
+Flow.add(require('./truthy.js'));
+Flow.add(require('./falsy.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
