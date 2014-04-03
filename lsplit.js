@@ -76,9 +76,6 @@ LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentPa
         );
       }
     }   
-  } else {
-    // silent forward
-    next(false, {});
   }
 }
 

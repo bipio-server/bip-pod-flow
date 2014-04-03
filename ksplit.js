@@ -81,9 +81,6 @@ KeySplitter.prototype.invoke = function(imports, channel, sysImports, contentPar
         }
       }
     }
-  } else {
-    // silent forward
-    next(false, {});
   }
 }
 

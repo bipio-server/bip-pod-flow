@@ -76,7 +76,7 @@ RegExpReplace.prototype.invoke = function(imports, channel, sysImports, contentP
     }
   } else {
     // silent passthrough
-    next(false);
+    next(false, {});
   }
 }
 
