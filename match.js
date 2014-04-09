@@ -107,7 +107,7 @@ Match.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
 
   if (discardOn) {
     if (safeRegex(discardOn)) {
-      if (valueMatch(discardOn, imports, key)) {
+      if (valueMatch(discardOn, matchOn)) {
         pass = false;
       }
     } else {
