@@ -97,6 +97,10 @@ Match.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
   discardOn = imports.discard_on || channel.config.discard_on,
   matchOn = imports.funnel || imports;
 
+  if (!acceptOn && !discardOn) {
+    pass = true;
+  }
+
   if (acceptOn) {
     if (safeRegex(acceptOn)) {
       pass = valueMatch(acceptOn, matchOn);
