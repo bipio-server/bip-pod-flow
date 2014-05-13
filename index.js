@@ -45,6 +45,7 @@ Flow.add(require('./regex_replace.js'));
 Flow.add(require('./truthy.js'));
 Flow.add(require('./falsy.js'));
 Flow.add(require('./delta_gate.js'));
+Flow.add(require('./has_files.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;

@@ -69,7 +69,7 @@ Match.prototype.getSchema = function() {
 }
 
 function valueMatch(pattern, val) {
-  var reg = new RegExp(pattern),
+  var reg = new RegExp(pattern, "i"),
   match = false;
 
   if (Object.prototype.toString.call(val) === '[object Object]') {
