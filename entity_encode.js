@@ -22,7 +22,7 @@
 function EntityEncode(podConfig) {
   this.name = 'entity_encode';
   this.description = 'HTML Entity Encode',
-  this.description_long = 'Encodes HTML Entities, strips <script> tags and XSS',
+  this.description_long = 'Encodes HTML Entities, strips &lt;script&gt; tags and XSS',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
