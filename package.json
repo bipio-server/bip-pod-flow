@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-flow",
-  "version": "0.1.9",
+  "version": "0.1.11",
+  "author" : "Michael Pearson",
   "description": "Pipeline Flow Pod for Bipio",
   "keywords": [
     "bip",

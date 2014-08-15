@@ -3,8 +3,8 @@
  * The Bipio Flow Pod.  keysplitter action definition
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
