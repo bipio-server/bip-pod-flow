@@ -22,8 +22,8 @@
 
 function BlackHole() {
     this.name = 'blackhole';
-    this.description = 'Blackhole',
-    this.description_long = 'Drops a message on the floor. Ends delivery',
+    this.title = 'Blackhole',
+    this.description = 'Drops a message on the floor. Ends delivery',
     this.trigger = false;
     this.singleton = true;
 }

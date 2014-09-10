@@ -21,8 +21,8 @@
  */
 function Truthy(podConfig) {
   this.name = 'truthy';
-  this.description = 'Input is Truthy',
-  this.description_long = 'Conditionally forwards a message if the input has a true-like value',
+  this.title = 'Input is Truthy',
+  this.description = 'Conditionally forwards a message if the input has a true-like value',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -31,7 +31,7 @@ function Truthy(podConfig) {
 Truthy.prototype = {};
 
 Truthy.prototype.getSchema = function() {
-  return {        
+  return {
     "imports": {
       properties : {
         'value' : {
@@ -44,14 +44,14 @@ Truthy.prototype.getSchema = function() {
 }
 
 Truthy.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var val = ((imports && imports.value) 
-      ? imports.value.toString().trim().toLowerCase() 
+  var val = ((imports && imports.value)
+      ? imports.value.toString().trim().toLowerCase()
       : null),
     truthy = (val || /1|yes|y|true/g.test(val));
 
   if (truthy) {
     next(false, {});
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------

@@ -19,8 +19,8 @@
 
 function DeltaGate() {
   this.name = 'delta_gate';
-  this.description = 'Key/Value Change Forwarder',
-  this.description_long = 'Given a key,value pair, continues graph processing if the value has changed',
+  this.title = 'Key/Value Change Forwarder',
+  this.description = 'Given a key,value pair, continues graph processing if the value has changed',
   this.trigger = false;
   this.singleton = false;
 }
@@ -39,7 +39,8 @@ DeltaGate.prototype.getSchema = function() {
           type : "string",
           description : "Tracking Value"
         }
-      }
+      },
+      required : [ 'key' ]
     }
   }
 }

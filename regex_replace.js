@@ -21,8 +21,8 @@ var safeRegex = require('safe-regex');
 
 function RegExpReplace(podConfig) {
   this.name = 'regex_replace';
-  this.description = 'Regex Replace',
-  this.description_long = 'Replace a String by Regulr Expression',
+  this.title = 'Regex Replace',
+  this.description = 'Replace a String by Regulr Expression',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -31,7 +31,7 @@ function RegExpReplace(podConfig) {
 RegExpReplace.prototype = {};
 
 RegExpReplace.prototype.getSchema = function() {
-  return {    
+  return {
     "imports": {
       properties : {
         'in_str' : {
@@ -63,8 +63,8 @@ RegExpReplace.prototype.invoke = function(imports, channel, sysImports, contentP
   if (imports.in_str && imports.repl_str && imports.regex) {
     if (safeRegex(imports.regex)) {
       try {
-        var exports = { 
-            out_str : imports.in_str.replace(new RegExp(imports.regex, 'gi'), imports.repl_str) 
+        var exports = {
+            out_str : imports.in_str.replace(new RegExp(imports.regex, 'gi'), imports.repl_str)
           };
 
         next(false, exports);

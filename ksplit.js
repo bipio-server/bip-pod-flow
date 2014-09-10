@@ -22,8 +22,8 @@
 
 function KeySplitter(podConfig) {
   this.name = 'ksplit';
-  this.description = 'Splits a JSON document by row',
-  this.description_long = 'Given an JSON document, generates an export for each row',
+  this.title = 'Splits a JSON document by row',
+  this.description = 'Given an JSON document, generates an export for each row',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -39,7 +39,8 @@ KeySplitter.prototype.getSchema = function() {
           "type" : "string",
           "description" : "JSON Object"
         }
-      }
+      },
+      "required" : [ "rows" ]
     },
     "exports": {
       "properties" : {
@@ -54,7 +55,7 @@ KeySplitter.prototype.getSchema = function() {
         "value" : {
           "type" : "mixed",
           "description" : "Key Value"
-        }        
+        }
       }
     }
   }
@@ -64,20 +65,23 @@ KeySplitter.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 KeySplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (Object.keys(imports).length > 0) {
-    if (imports.hasOwnProperty(key)) {
-      var i = 0;
-      for (var key in imports) {
-        if (imports.hasOwnProperty(key)) {
-          next(
-            false, 
-            {
-              index : i,
-              key : key,
-              value : imports[key]
-            }
-          );
-          i++;
+  if (imports.rows) {
+    var rows = imports.rows;
+    if (Object.keys(rows).length > 0) {
+      if (rows.hasOwnProperty(key)) {
+        var i = 0;
+        for (var key in rows) {
+          if (rows.hasOwnProperty(key)) {
+            next(
+              false,
+              {
+                index : i,
+                key : key,
+                value : rows[key]
+              }
+            );
+            i++;
+          }
         }
       }
     }

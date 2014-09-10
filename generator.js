@@ -22,8 +22,8 @@
 
 function Generator(podConfig) {
   this.name = 'generator';
-  this.description = 'Generate a Payload',
-  this.description_long = 'Generates a Payload that can be processed by a Trigger Bip',
+  this.title = 'Generate a Payload',
+  this.description = 'Generates a Payload that can be processed by a Trigger Bip',
   this.trigger = true;
   this.singleton = false;
   this.podConfig = podConfig;

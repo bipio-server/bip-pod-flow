@@ -22,8 +22,8 @@
 
 function Nonce(podConfig) {
   this.name = 'nonce';
-  this.description = 'Generate a Random String',
-  this.description_long = 'Generate a Random 64 bit string',
+  this.title = 'Generate a Random String',
+  this.description = 'Generate a Random 64 bit string',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;

@@ -22,8 +22,8 @@
 
 function HasFiles(podConfig) {
   this.name = 'has_files';
-  this.description = 'If A File Is Present',
-  this.description_long = 'Conditionally forward a message when a file is present',
+  this.title = 'If A File Is Present',
+  this.description = 'Conditionally forward a message when a file is present',
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
@@ -49,18 +49,18 @@ HasFiles.prototype.getSchema = function() {
  */
 HasFiles.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var fileMatch = false, file, extRegExp;
-  
+
   if (contentParts._files && contentParts._files.length) {
     for (var i = 0; i < contentParts._files.length; i++) {
       file = contentParts._files[i];
       if (channel.config.extension) {
         extRegExp = new RegExp(channel.config.extension, 'i');
-        
+
         if (extRegExp.test(file.name)) {
           fileMatch = true;
           break;
         }
-      
+
       } else if ('image' === channel.config.extension) {
         if (0 === file.type.indexOf('image')) {
           fileMatch = true;
@@ -70,9 +70,9 @@ HasFiles.prototype.invoke = function(imports, channel, sysImports, contentParts,
         fileMatch = true;
         break;
       }
-    }  
+    }
   }
-  
+
   if (fileMatch) {
     next(false, {});
   }

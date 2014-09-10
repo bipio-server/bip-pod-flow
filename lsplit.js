@@ -22,8 +22,8 @@
 
 function LineSplitter(podConfig) {
   this.name = 'lsplit';
-  this.description = 'Split Text by Line',
-  this.description_long = 'Generates an export for every line in a text document (Windows/Mac/Linux)',
+  this.title = 'Split Text by Line',
+  this.description = 'Generates an export for every line in a text document (Windows/Mac/Linux)',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -39,7 +39,8 @@ LineSplitter.prototype.getSchema = function() {
           "type" : "string",
           "description" : "Text Body"
         }
-      }
+      }.
+      "required" : [ "body" ]
     },
     "exports": {
       "properties" : {
@@ -50,7 +51,7 @@ LineSplitter.prototype.getSchema = function() {
         "value" : {
           "type" : "string",
           "description" : "Line Value"
-        }        
+        }
       }
     }
   }
@@ -68,14 +69,14 @@ LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentPa
       line = lines[i].trim();
       if (line) {
         next(
-          false, 
+          false,
           {
             index : i,
             value : line
-          }          
+          }
         );
       }
-    }   
+    }
   }
 }
 

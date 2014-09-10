@@ -21,8 +21,8 @@
  */
 function Falsy(podConfig) {
   this.name = 'falsy';
-  this.description = 'Input is Falsy',
-  this.description_long = 'Conditionally forwards a message if the input has a false-like value',
+  this.title = 'Input is Falsy',
+  this.description = 'Conditionally forwards a message if the input has a false-like value',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -31,7 +31,7 @@ function Falsy(podConfig) {
 Falsy.prototype = {};
 
 Falsy.prototype.getSchema = function() {
-  return {        
+  return {
     "imports": {
       properties : {
         'value' : {
@@ -44,14 +44,14 @@ Falsy.prototype.getSchema = function() {
 }
 
 Falsy.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var val = ((imports && imports.value) 
-      ? imports.value.toString().trim().toLowerCase() 
+  var val = ((imports && imports.value)
+      ? imports.value.toString().trim().toLowerCase()
       : null),
     falsy = (!val || /0|no|n|false/g.test(val));
 
   if (falsy) {
     next(false, {});
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------

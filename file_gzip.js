@@ -25,8 +25,8 @@ zlib = require('zlib');
 
 function FileGZip(podConfig) {
   this.name = 'file_gzip';
-  this.description = 'GZip Files',
-  this.description_long = 'Any files present will be replaced with their GZipped equivalent',
+  this.title = 'GZip Files',
+  this.description = 'Any files present will be replaced with their GZipped equivalent',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -66,7 +66,7 @@ FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts,
             file.size = stat.size;
 
             fs.unlink(inFilePath, function(err) {
-              if (err) {                
+              if (err) {
                 deferred.reject(err);
               } else {
                 deferred.resolve();

@@ -22,8 +22,8 @@
 var safeRegex = require('safe-regex');
 function Match(podConfig) {
   this.name = 'match';
-  this.description = 'Filter messages by a search pattern',
-  this.description_long = 'Conditionally forwards or discards messages matching certain search patterns',
+  this.title = 'Filter messages by a search pattern',
+  this.description = 'Conditionally forwards or discards messages matching certain search patterns',
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;

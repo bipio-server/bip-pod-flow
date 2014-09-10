@@ -21,8 +21,8 @@
  */
 function EntityDecode(podConfig) {
   this.name = 'entity_decode';
-  this.description = 'HTML Entity Decode',
-  this.description_long = 'Decodes HTML Entities',
+  this.title = 'HTML Entity Decode',
+  this.description = 'Decodes HTML Entities',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;

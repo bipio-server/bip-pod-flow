@@ -22,8 +22,8 @@
 
 function Text2JSON() {
   this.name = 'text2json';
-  this.description = 'Text to JSON',
-  this.description_long = 'Converts a JSON text body into its equivalent export',
+  this.title = 'Text to JSON',
+  this.description = 'Converts a JSON text body into its equivalent export',
   this.trigger = false;
   this.singleton = true;
 }
@@ -38,7 +38,8 @@ Text2JSON.prototype.getSchema = function() {
           "type" : String,
           "description" : "JSON String"
         }
-      }
+      },
+      "required" : [ "body" ]
     }
   }
 }
@@ -47,8 +48,8 @@ Text2JSON.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 Text2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  
-  if (imports.body) {    
+
+  if (imports.body) {
     try {
       var exports = JSON.parse(imports.body.replace(/\n/g, ''));
       next(false, exports);

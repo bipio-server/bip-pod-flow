@@ -22,8 +22,8 @@
 
 function Counter() {
   this.name = 'counter';
-  this.description = 'Counter',
-  this.description_long = 'A simple accumulator, +1 every time the channel is invoked',
+  this.title = 'Counter',
+  this.description = 'A simple accumulator, +1 every time the channel is invoked',
   this.trigger = false;
   this.singleton = false;
 }
@@ -109,12 +109,12 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
     log = $resource.log,
     modelName = this.$resource.getDataSourceName('counter');
 
-  if ('get_count' === method) {   
+  if ('get_count' === method) {
 
      var currentPage = parseInt(req.query.page) || 1,
         currentPageSize = parseInt(req.query.page_size) || 10,
         orderBy = ['entity_created', 'desc'];
-        
+
     dao.list(
       modelName,
       null,
@@ -131,11 +131,11 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
           res.send(500);
         } else {
           res.contentType(self.getSchema().renderers[method].contentType);
-          res.send(results); 
-        }        
+          res.send(results);
+        }
       }
-    );      
-    
+    );
+
   } else {
     res.send(404);
   }
@@ -172,9 +172,9 @@ Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, 
           // pretty gross, is there a better way?
           if (!result.id) {
             dao.updateColumn(
-              modelName, 
+              modelName,
               filter,
-              {              
+              {
                 id : app.helper.uuid().v4(),
                 created : app.helper.nowUTCSeconds()
               },
