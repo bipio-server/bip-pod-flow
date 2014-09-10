@@ -39,7 +39,7 @@ LineSplitter.prototype.getSchema = function() {
           "type" : "string",
           "description" : "Text Body"
         }
-      }.
+      },
       "required" : [ "body" ]
     },
     "exports": {
