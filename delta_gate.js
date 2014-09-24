@@ -38,9 +38,22 @@ DeltaGate.prototype.getSchema = function() {
         'value' : {
           type : "string",
           description : "Tracking Value"
+        },
+        "delta_precision" : {
+          type : "number",
+          description : "Floating Point Delta Precision",
+          "default" : 1
         }
       },
       required : [ 'key' ]
+    },
+    "exports" : {
+      "properties" : {
+        "delta" : {
+          type : "string",
+          description : "Delta"
+        }
+      }
     }
   }
 }
@@ -83,7 +96,24 @@ DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts
       } else {
 
         if (!result || (result && result.value !== imports.value )) {
-          next(false, {});
+          var l = Number(result ? result.value : 0),
+            r = Number(imports.value),
+            precision = Number(imports.delta_precision)
+            exports = {
+              delta : imports.value
+            };
+
+          if (isNaN(precision)) {
+            precision = Number(self.getSchema().imports.delta_precision);
+          }
+
+          // if tracking numeric values, exports the difference
+          // of new and old
+          if (!isNaN(l) && !isNaN(r)) {
+            exports.delta = Number(Number(r - l).toFixed(precision))
+          }
+
+          next(false, exports);
         }
 
         dao.upsert(modelName, filter, props, function(err, result) {
