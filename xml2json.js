@@ -50,11 +50,15 @@ XML2JSON.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 XML2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var json = xml2json.toJson(imports.body, { object : true});
-    if (json) {
-        next(false, json);
-    } else {
-        next(true, 'Payload could not be parsed');
+    try {
+        var json = xml2json.toJson(imports.body, { object : true});
+        if (json) {
+            next(false, json);
+        } else {
+            next(true, 'Payload could not be parsed');
+        }
+    } catch (e) {
+        next(e);
     }
 }
 
