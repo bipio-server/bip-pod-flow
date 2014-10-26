@@ -18,9 +18,9 @@
  */
 
 function DeltaGate() {
-  this.name = 'delta_gate';
-  this.title = 'Delta Gate',
-  this.description = "Continues processing if a value you're tracking changes",
+  this.name = 'dedup';
+  this.title = 'De-Duplicate',
+  this.description = "Ignores Values which have been seen before",
   this.trigger = false;
   this.singleton = false;
 }
@@ -31,29 +31,12 @@ DeltaGate.prototype.getSchema = function() {
   return {
     'imports' : {
       properties : {
-        'key' : {
-          type : "string",
-          description : "Unique Key"
-        },
         'value' : {
           type : "string",
-          description : "Tracking Value"
-        },
-        "delta_precision" : {
-          type : "number",
-          description : "Floating Point Delta Precision",
-          "default" : 1
+          description : "New Value"
         }
       },
-      required : [ 'key' ]
-    },
-    "exports" : {
-      "properties" : {
-        "delta" : {
-          type : "string",
-          description : "Delta"
-        }
-      }
+      "required" : [ "value" ]
     }
   }
 }
@@ -63,7 +46,7 @@ DeltaGate.prototype.teardown = function(channel, accountInfo, next) {
   self = this,
   dao = $resource.dao,
   log = $resource.log,
-  modelName = this.$resource.getDataSourceName('delta_gate');
+  modelName = this.$resource.getDataSourceName('dup');
 
   dao.removeFilter(modelName,{
     owner_id : channel.owner_id,
@@ -72,21 +55,23 @@ DeltaGate.prototype.teardown = function(channel, accountInfo, next) {
 }
 
 DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.key) {
+ 
+  if (imports.value) {
     var $resource = this.$resource,
     self = this,
     dao = $resource.dao,
-    modelName = this.$resource.getDataSourceName('delta_gate'),
+    modelName = this.$resource.getDataSourceName('dup'),
     filter = {
       owner_id : channel.owner_id,
       channel_id : channel.id,
-      key : imports.key
+      bip_id : sysImports.bip.id,
+      value : imports.value
     },
     props = {
       last_update : app.helper.nowUTCSeconds(),
       owner_id : channel.owner_id,
       channel_id : channel.id,
-      key : imports.key,
+      bip_id : sysImports.bip.id,
       value : imports.value
     };
 
@@ -96,31 +81,10 @@ DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts
       } else {
 
         if (!result || (result && result.value !== imports.value )) {
-          var l = Number(result ? result.value : 0),
-            r = Number(imports.value),
-            precision = Number(imports.delta_precision)
-            exports = {
-              delta : imports.value
-            };
-
-          if (isNaN(precision)) {
-            precision = Number(self.getSchema().imports.delta_precision);
-          }
-
-          // if tracking numeric values, exports the difference
-          // of new and old
-          if (!isNaN(l) && !isNaN(r)) {
-            exports.delta = Number(Number(r - l).toFixed(precision))
-          }
-
-          next(false, exports);
+          dao.upsert(modelName, filter, props, function(err, result) {
+            next(err, {});
+          });
         }
-
-        dao.upsert(modelName, filter, props, function(err, result) {
-          if (err) {
-            next(err);
-          }
-        });
       }
     });
   }

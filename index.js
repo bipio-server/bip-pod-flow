@@ -26,6 +26,7 @@ var Pod = require('bip-pod'),
         dataSources : [
             require('./models/counter'),
             require('./models/delta_gate'),
+            require('./models/dup'),            
         ]
     });
 
@@ -46,6 +47,7 @@ Flow.add(require('./truthy.js'));
 Flow.add(require('./falsy.js'));
 Flow.add(require('./delta_gate.js'));
 Flow.add(require('./has_files.js'));
+Flow.add(require('./dedup.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;
