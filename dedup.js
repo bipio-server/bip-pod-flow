@@ -55,38 +55,8 @@ DeltaGate.prototype.teardown = function(channel, accountInfo, next) {
 }
 
 DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
- 
   if (imports.value) {
-    var $resource = this.$resource,
-    self = this,
-    dao = $resource.dao,
-    modelName = this.$resource.getDataSourceName('dup'),
-    filter = {
-      owner_id : channel.owner_id,
-      channel_id : channel.id,
-      bip_id : sysImports.bip.id,
-      value : imports.value
-    },
-    props = {
-      last_update : app.helper.nowUTCSeconds(),
-      owner_id : channel.owner_id,
-      channel_id : channel.id,
-      bip_id : sysImports.bip.id,
-      value : imports.value
-    };
-
-    dao.find(modelName, filter, function(err, result) {
-      if (err) {
-        next(err);
-      } else {
-
-        if (!result || (result && result.value !== imports.value )) {
-          dao.upsert(modelName, filter, props, function(err, result) {
-            next(err, {});
-          });
-        }
-      }
-    });
+    $resource.dupFilter(imports, 'value', channel, sysImports, next);
   }
 }
 

@@ -25,9 +25,9 @@ var Pod = require('bip-pod'),
         description : 'Control flows, filtering, token generation for hubs, inline',
         dataSources : [
             require('./models/counter'),
-            require('./models/delta_gate'),
-            require('./models/dup'),            
-        ]
+            require('./models/delta_gate')
+        ],
+        trackDuplicates : true
     });
 
 Flow.add(require('./match.js'));

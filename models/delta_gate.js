@@ -1,11 +1,6 @@
 DeltaGate = {
   entityName : 'delta_gate',
   entitySchema : {
-    id: {
-      type: String,
-      renderable: true,
-      writable: false
-    },
 
     owner_id : {
       type: String,

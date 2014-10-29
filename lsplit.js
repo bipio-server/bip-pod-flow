@@ -62,7 +62,7 @@ LineSplitter.prototype.getSchema = function() {
  */
 LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.body) {
-    var lines = imports.body.split(/[\n(?\r)]/),
+    var lines = imports.body.split(/\n\r?/g),
       line;
 
     for (var i = 0; i < lines.length; i++) {
