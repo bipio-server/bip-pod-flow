@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function DeltaGate() {
+function DeDup() {
   this.name = 'dedup';
   this.title = 'De-Duplicate',
   this.description = "Ignores Values which have been seen before",
@@ -25,9 +25,9 @@ function DeltaGate() {
   this.singleton = false;
 }
 
-DeltaGate.prototype = {};
+DeDup.prototype = {};
 
-DeltaGate.prototype.getSchema = function() {
+DeDup.prototype.getSchema = function() {
   return {
     'imports' : {
       properties : {
@@ -41,24 +41,11 @@ DeltaGate.prototype.getSchema = function() {
   }
 }
 
-DeltaGate.prototype.teardown = function(channel, accountInfo, next) {
-  var $resource = this.$resource,
-  self = this,
-  dao = $resource.dao,
-  log = $resource.log,
-  modelName = this.$resource.getDataSourceName('dup');
-
-  dao.removeFilter(modelName,{
-    owner_id : channel.owner_id,
-    channel_id : channel.id
-  }, next );
-}
-
-DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+DeDup.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.value) {
     this.$resource.dupFilter(imports, 'value', channel, sysImports, next);
   }
 }
 
 // -----------------------------------------------------------------------------
-module.exports = DeltaGate;
+module.exports = DeDup;
