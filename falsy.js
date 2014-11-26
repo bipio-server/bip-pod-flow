@@ -19,29 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function Falsy(podConfig) {
-  this.name = 'falsy';
-  this.title = 'Input is Falsy',
-  this.description = 'Conditionally forwards a message if the input has a false-like value',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function Falsy(podConfig) {}
 
 Falsy.prototype = {};
-
-Falsy.prototype.getSchema = function() {
-  return {
-    "imports": {
-      properties : {
-        'value' : {
-          type : 'string',
-          description : 'Input Value'
-        }
-      }
-    }
-  }
-}
 
 Falsy.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var val = ((imports && imports.value)

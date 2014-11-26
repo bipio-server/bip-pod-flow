@@ -19,29 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function EntityDecode(podConfig) {
-  this.name = 'entity_decode';
-  this.title = 'HTML Entity Decode',
-  this.description = 'Decodes HTML Entities',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function EntityDecode() {}
 
 EntityDecode.prototype = {};
-
-EntityDecode.prototype.getSchema = function() {
-  return {
-    "imports": {
-      properties : {
-        'funnel' : {
-          type : 'string',
-          description : 'Content Funnel.  If empty, decodes all adjacent imports'
-        }
-      }
-    }
-  }
-}
 
 EntityDecode.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var exports = imports;

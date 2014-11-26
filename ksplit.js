@@ -20,46 +20,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function KeySplitter(podConfig) {
-  this.name = 'ksplit';
-  this.title = 'Splits a JSON document by row',
-  this.description = 'Given an JSON document, generates an export for each row',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function KeySplitter() {}
 
 KeySplitter.prototype = {};
-
-KeySplitter.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "rows" : {
-          "type" : "string",
-          "description" : "JSON Object"
-        }
-      },
-      "required" : [ "rows" ]
-    },
-    "exports": {
-      "properties" : {
-        "key" : {
-          "type" : "string",
-          "description" : "Source Key"
-        },
-        "index" : {
-          "type" : "integer",
-          "description" : "Item Offset"
-        },
-        "value" : {
-          "type" : "mixed",
-          "description" : "Key Value"
-        }
-      }
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.

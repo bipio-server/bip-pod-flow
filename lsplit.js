@@ -20,62 +20,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function LineSplitter(podConfig) {
-  this.name = 'lsplit';
-  this.title = 'Split Text by Line',
-  this.description = 'Generates an export for every line in a text document (Windows/Mac/Linux)',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function LineSplitter() {}
 
 LineSplitter.prototype = {};
-
-LineSplitter.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "body" : {
-          "type" : "string",
-          "description" : "Text Body"
-        }
-      },
-      "required" : [ "body" ]
-    },
-    "exports": {
-      "properties" : {
-        "index" : {
-          "type" : "integer",
-          "description" : "Line Number"
-        },
-        "value" : {
-          "type" : "string",
-          "description" : "Line Value"
-        }
-      }
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.
  */
 LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.body) {
-    var lines = imports.body.split(/\n\r?/g),
-      line;
+  var lines = imports.body.split(/\n\r?/g),
+    line;
 
-    for (var i = 0; i < lines.length; i++) {
-      line = lines[i].trim();
-      if (line) {
-        next(
-          false,
-          {
-            index : i,
-            value : line
-          }
-        );
-      }
+  for (var i = 0; i < lines.length; i++) {
+    line = lines[i].trim();
+    if (line) {
+      next(
+        false,
+        {
+          index : i,
+          value : line
+        }
+      );
     }
   }
 }

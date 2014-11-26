@@ -19,29 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function Truthy(podConfig) {
-  this.name = 'truthy';
-  this.title = 'Input is Truthy',
-  this.description = 'Conditionally forwards a message if the input has a true-like value',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function Truthy() {}
 
 Truthy.prototype = {};
-
-Truthy.prototype.getSchema = function() {
-  return {
-    "imports": {
-      properties : {
-        'value' : {
-          type : 'string',
-          description : 'Input Value'
-        }
-      }
-    }
-  }
-}
 
 Truthy.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var val = ((imports && imports.value)

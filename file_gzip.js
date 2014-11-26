@@ -24,19 +24,9 @@ fs = require('fs'),
 zlib = require('zlib');
 
 function FileGZip(podConfig) {
-  this.name = 'file_gzip';
-  this.title = 'GZip Files',
-  this.description = 'Any files present will be replaced with their GZipped equivalent',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
 }
 
 FileGZip.prototype = {};
-
-FileGZip.prototype.getSchema = function() {
-  return {}
-}
 
 FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var promises = [], deferred;

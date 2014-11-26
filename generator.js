@@ -21,37 +21,9 @@
  */
 
 function Generator(podConfig) {
-  this.name = 'generator';
-  this.title = 'Generate a Payload',
-  this.description = 'Generates a Payload that can be processed by a Trigger Bip',
-  this.trigger = true;
-  this.singleton = false;
-  this.podConfig = podConfig;
 }
 
 Generator.prototype = {};
-
-Generator.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-        'payload' : {
-          type : "string",
-          description : "Payload"
-        }
-      }
-    },
-    'exports' : {
-      properties : {
-        'payload' : {
-          type : "string",
-          description : "Payload"
-        }
-      }
-    }
-  }
-}
-
 /**
  * Invokes (runs) the action.
  */

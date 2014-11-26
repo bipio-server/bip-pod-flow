@@ -175,6 +175,45 @@
         ]
       }
     },
+    "str_split": {
+      "title": "Split Text by String",
+      "description": "Generates an export for every line in a text document (Windows/Mac/Linux)",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "description": "Line Number"
+          },
+          "value": {
+            "type": "string",
+            "description": "Line Value"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "Text Body"
+          },
+          "split_by": {
+            "type": "string",
+            "description": "Separator String"
+          }
+        },
+        "required": [
+          "body", "split_by"
+        ],
+        "disposition": [
+          "body", "split_by"
+        ]
+      }
+    },
     "blackhole": {
       "title": "Blackhole",
       "description": "Drops a message on the floor. Ends delivery",
