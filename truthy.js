@@ -47,7 +47,7 @@ Truthy.prototype.invoke = function(imports, channel, sysImports, contentParts, n
   var val = ((imports && imports.value)
       ? imports.value.toString().trim().toLowerCase()
       : null),
-    truthy = (val || /1|yes|y|true/g.test(val));
+    truthy = (true === val || /1|yes|y|true/g.test(val));
 
   if (truthy) {
     next(false, {});
