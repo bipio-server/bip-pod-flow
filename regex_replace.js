@@ -60,24 +60,20 @@ RegExpReplace.prototype.getSchema = function() {
 }
 
 RegExpReplace.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.in_str && imports.repl_str && imports.regex) {
-    if (safeRegex(imports.regex)) {
-      try {
-        var exports = {
-            out_str : imports.in_str.replace(new RegExp(imports.regex, 'gi'), imports.repl_str)
-          };
+  if (safeRegex(imports.regex)) {
+    try {
+      var exports = {
+          out_str : imports.in_str.replace(new RegExp(imports.regex, 'gi'), imports.repl_str ? imports.repl_str : '')
+        };
 
-        next(false, exports);
-      } catch (e) {
-        next(e.message);
-      }
-    } else {
-      next('Regex ' + imports.regex + ' is unsafe');
+      next(false, exports);
+    } catch (e) {
+      next(e.message);
     }
   } else {
-    // silent passthrough
-    next(false, {});
+    next('Regex ' + imports.regex + ' is unsafe');
   }
+
 }
 
 // -----------------------------------------------------------------------------
