@@ -366,19 +366,20 @@
             "type": "string",
             "description": "Input String"
           },
-          "repl_str": {
-            "type": "string",
-            "description": "Replace String"
-          },
           "regex": {
             "type": "string",
             "description": "Regular Expression"
+          },
+          "repl_str": {
+            "type": "string",
+            "description": "Replace String"
           }
         },
+        "required" : [ "in_str", "regex" ],
         "disposition": [
           "in_str",
-          "repl_str",
-          "regex"
+          "regex",
+          "repl_str"
         ]
       }
     },
