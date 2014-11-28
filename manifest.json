@@ -177,7 +177,7 @@
     },
     "str_split": {
       "title": "Split Text by String",
-      "description": "Generates an export for every line in a text document (Windows/Mac/Linux)",
+      "description": "Generates an export for every line in a text document, split by custom delimiter",
       "trigger": "invoke",
       "config": {
         "properties": {},
