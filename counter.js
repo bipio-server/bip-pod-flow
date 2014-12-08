@@ -36,7 +36,7 @@ Counter.prototype.setup = function(channel, accountInfo, next) {
     var counterStruct = {
       owner_id : channel.owner_id,
       channel_id : channel.id,
-      last_update : app.helper.nowUTCSeconds(),
+      last_update : $resource.helper.nowUTCSeconds(),
       counter : 0
     }
 
@@ -114,7 +114,7 @@ Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       group : imports.group_by
     },
   setter = {
-    last_update : app.helper.nowUTCSeconds()
+    last_update : $resource.helper.nowUTCSeconds()
   },
   inc = imports.increment_by || 1;
 

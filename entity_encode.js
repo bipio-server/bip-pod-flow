@@ -27,9 +27,9 @@ EntityEncode.prototype.invoke = function(imports, channel, sysImports, contentPa
   var exports = imports;
 
   if (imports.funnel) {
-    next(false, app.helper.pasteurize(imports.funnel));
+    next(false, this.$resource.helper.pasteurize(imports.funnel));
   } else {
-    next(false, app.helper.pasteurize(imports));
+    next(false, this.$resource.helper.pasteurize(imports));
   }
 }
 

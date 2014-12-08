@@ -46,7 +46,7 @@ DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts
       key : imports.key
     },
     props = {
-      last_update : app.helper.nowUTCSeconds(),
+      last_update : $resource.helper.nowUTCSeconds(),
       owner_id : channel.owner_id,
       channel_id : channel.id,
       key : imports.key,

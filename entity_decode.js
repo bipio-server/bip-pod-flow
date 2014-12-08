@@ -27,9 +27,9 @@ EntityDecode.prototype.invoke = function(imports, channel, sysImports, contentPa
   var exports = imports;
 
   if (imports.funnel) {
-    next(false, app.helper.naturalize(imports.funnel));
+    next(false, this.$resource.helper.naturalize(imports.funnel));
   } else {
-    next(false, app.helper.naturalize(imports));
+    next(false, this.$resource.helper.naturalize(imports));
   }
 }
 
