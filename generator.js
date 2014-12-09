@@ -24,6 +24,11 @@ function Generator(podConfig) {
 }
 
 Generator.prototype = {};
+
+Generator.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  this.invoke.apply(this, arguments);
+}
+
 /**
  * Invokes (runs) the action.
  */
