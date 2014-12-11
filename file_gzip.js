@@ -24,12 +24,16 @@ fs = require('fs'),
 zlib = require('zlib');
 
 function FileGZip(podConfig) {
+
 }
 
 FileGZip.prototype = {};
 
 FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var promises = [], deferred;
+  var promises = [],
+    $resource = this.$resource,
+    _ = $resource._,
+    deferred;
 
   for (var i = 0; i < contentParts._files.length; i++) {
 
@@ -39,32 +43,24 @@ FileGZip.prototype.invoke = function(imports, channel, sysImports, contentParts,
       );
 
     (function(deferred, file) {
-      var inFilePath = file.localpath,
-      inFile = fs.createReadStream(inFilePath),
-      localPath = file.localpath + '.gz',
-      outFile =  fs.createWriteStream(localPath),
-      gzip = zlib.createGzip();
 
-      inFile.pipe(gzip).pipe(outFile).on('close', function() {
-        fs.stat(localPath, function(err, stat) {
+      $resource.file.save(
+        file.name,
+        file.localpath,
+        {
+          compress : true
+        },
+        function(err, struct) {
           if (err) {
             deferred.reject(err);
           } else {
-            file.type = 'application/gzip';
-            file.localpath = localPath;
-            file.name += '.gz';
-            file.size = stat.size;
-
-            fs.unlink(inFilePath, function(err) {
-              if (err) {
-                deferred.reject(err);
-              } else {
-                deferred.resolve();
-              }
+            _.each(struct, function(value, key) {
+              file[key] = value;
             });
+            deferred.resolve();
           }
-        });
-      });
+        }
+      );
     })(deferred, contentParts._files[i]);
   }
 
