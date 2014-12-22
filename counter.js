@@ -114,7 +114,7 @@ Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       group : imports.group_by
     },
   setter = {
-    last_update : $resource.helper.nowUTCSeconds()
+    last_update : $resource.helper.nowUTCMS()
   },
   inc = imports.increment_by || 1;
 
