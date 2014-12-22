@@ -36,7 +36,7 @@ Counter.prototype.setup = function(channel, accountInfo, next) {
     var counterStruct = {
       owner_id : channel.owner_id,
       channel_id : channel.id,
-      last_update : $resource.helper.nowUTCSeconds(),
+      last_update : $resource.helper.nowUTCMS(),
       counter : 0
     }
 
