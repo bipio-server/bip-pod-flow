@@ -20,43 +20,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Text2JSON() {
-  this.name = 'text2json';
-  this.title = 'Text to JSON',
-  this.description = 'Converts a JSON text body into its equivalent export',
-  this.trigger = false;
-  this.singleton = true;
-}
+function Text2JSON() {}
 
 Text2JSON.prototype = {};
-
-Text2JSON.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "body" : {
-          "type" : String,
-          "description" : "JSON String"
-        }
-      },
-      "required" : [ "body" ]
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.
  */
 Text2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-
-  if (imports.body) {
-    try {
-      var exports = JSON.parse(imports.body.replace(/\n/g, ''));
-      next(false, exports);
-    } catch (e) {
-      this.$resource.log('parse error ' + e, channel, 'error');
-      next(true);
-    }
+  try {
+    var exports = JSON.parse(imports.body.replace(/\n/g, ''));
+    next(false, exports);
+  } catch (e) {
+    this.$resource.log('parse error ' + e, channel, 'error');
+    next(true);
   }
 }
 

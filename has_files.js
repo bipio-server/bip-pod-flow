@@ -20,29 +20,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function HasFiles(podConfig) {
-  this.name = 'has_files';
-  this.title = 'If A File Is Present',
-  this.description = 'Conditionally forward a message when a file is present',
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
+function HasFiles() {
 }
 
 HasFiles.prototype = {};
-
-HasFiles.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-        'extension' : {
-          type : "string",
-          description : "File Extension (Optional)"
-        }
-      }
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.

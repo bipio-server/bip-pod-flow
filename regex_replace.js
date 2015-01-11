@@ -19,49 +19,12 @@
 
 var safeRegex = require('safe-regex');
 
-function RegExpReplace(podConfig) {
-  this.name = 'regex_replace';
-  this.title = 'Regex Replace',
-  this.description = 'Replace a String by Regulr Expression',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+function RegExpReplace() {}
 
 RegExpReplace.prototype = {};
 
-RegExpReplace.prototype.getSchema = function() {
-  return {
-    "imports": {
-      properties : {
-        'in_str' : {
-          type : 'string',
-          description : 'Input String'
-        },
-        'repl_str' : {
-          type : 'string',
-          description : 'Replace String'
-        },
-        'regex' : {
-          type : 'string',
-          description : 'Regular Expression'
-        }
-      },
-      "required" : [ "in_str", "regex" ]
-    },
-    "exports": {
-      properties : {
-        'out_str' : {
-          type : 'string',
-          description : 'Output String'
-        }
-      }
-    }
-  }
-}
-
 RegExpReplace.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.in_str && imports.regex && safeRegex(imports.regex)) {
+  if (safeRegex(imports.regex)) {
     try {
       var exports = {
           out_str : imports.in_str.replace(new RegExp(imports.regex, 'gi'), imports.repl_str ? imports.repl_str : '')

@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Flow Pod.  xml2json action definition
+ * The Bipio Flow Pod
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <github@m.bip.io>
@@ -20,27 +20,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var xml2json = require('xml2json');
+function StringSplitter() {}
 
-function XML2JSON() {}
-
-XML2JSON.prototype = {};
+StringSplitter.prototype = {};
 
 /**
  * Invokes (runs) the action.
  */
-XML2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    try {
-        var json = xml2json.toJson(imports.body, { object : true});
-        if (json) {
-            next(false, json);
-        } else {
-            next(true, 'Payload could not be parsed');
+StringSplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var lines = imports.body.split(imports.split_by),
+    line;
+
+  for (var i = 0; i < lines.length; i++) {
+    line = lines[i].trim();
+    if (line) {
+      next(
+        false,
+        {
+          index : i,
+          value : line
         }
-    } catch (e) {
-        next(e);
+      );
     }
+  }
 }
 
 // -----------------------------------------------------------------------------
-module.exports = XML2JSON;
+module.exports = StringSplitter;

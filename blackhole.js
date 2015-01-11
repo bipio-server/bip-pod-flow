@@ -21,23 +21,6 @@
  */
 
 function BlackHole() {
-    this.name = 'blackhole';
-    this.title = 'Blackhole',
-    this.description = 'Drops a message on the floor. Ends delivery',
-    this.trigger = false;
-    this.singleton = true;
-}
-
-BlackHole.prototype = {};
-
-BlackHole.prototype.getSchema = function() {
-    return {}
-}
-
-/**
- * Invokes (runs) the action.
- */
-BlackHole.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 }
 
 // -----------------------------------------------------------------------------

@@ -17,29 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function DeDup() {
-  this.name = 'dedup';
-  this.title = 'De-Duplicate',
-  this.description = "Ignores Values which have been seen before",
-  this.trigger = false;
-  this.singleton = false;
-}
+function DeDup() {}
 
 DeDup.prototype = {};
-
-DeDup.prototype.getSchema = function() {
-  return {
-    'imports' : {
-      properties : {
-        'value' : {
-          type : "string",
-          description : "New Value"
-        }
-      },
-      "required" : [ "value" ]
-    }
-  }
-}
 
 DeDup.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.value) {

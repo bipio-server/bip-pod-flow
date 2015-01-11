@@ -21,28 +21,9 @@
  */
 
 function Nonce(podConfig) {
-  this.name = 'nonce';
-  this.title = 'Generate a Random String',
-  this.description = 'Generate a Random 64 bit string',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
 }
 
 Nonce.prototype = {};
-
-Nonce.prototype.getSchema = function() {
-  return {
-    'exports' : {
-      properties : {
-        'nonce' : {
-          type : "string",
-          description : "random string"
-        }
-      }
-    }
-  }
-}
 
 function randStr (bits) {
   var chars, rand, i, ret;

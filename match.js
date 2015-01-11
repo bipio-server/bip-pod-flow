@@ -20,53 +20,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var safeRegex = require('safe-regex');
-function Match(podConfig) {
-  this.name = 'match';
-  this.title = 'Filter messages by a search pattern',
-  this.description = 'Conditionally forwards or discards messages matching certain search patterns',
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function Match() {}
 
 Match.prototype = {};
 
-Match.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-        accept_on : {
-          type: "string",
-          description: 'Accept if content matches',
-          optional: true
-        },
-        discard_on : {
-          type: "string",
-          description: 'Discard if content matches',
-          optional: true
-        }
-      }
-    },
-    "imports": {
-      properties : {
-        accept_on : {
-          type: "string",
-          description: 'Accept if content matches',
-          optional: true
-        },
-        discard_on : {
-          type: "string",
-          description: 'Discard if content matches',
-          optional: true
-        },
-        'funnel' : {
-          type : 'string',
-          description : 'Content Funnel.  If empty, matches any import'
-        }
-      }
-    }
-  }
-}
 
 function valueMatch(pattern, val) {
   var reg = new RegExp(pattern, "i"),

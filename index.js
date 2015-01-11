@@ -19,35 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Flow = new Pod({
-        name : 'flow',
-        title : 'Flow',
-        description : 'Control flows, filtering, token generation for hubs, inline',
-        dataSources : [
-            require('./models/counter'),
-            require('./models/delta_gate')
-        ],
-        trackDuplicates : true
-    });
-
-Flow.add(require('./match.js'));
-Flow.add(require('./xml2json.js'));
-Flow.add(require('./nonce.js'));
-Flow.add(require('./ksplit.js'));
-Flow.add(require('./lsplit.js'));
-Flow.add(require('./blackhole.js'));
-Flow.add(require('./counter.js'));
-Flow.add(require('./text2json.js'));
-Flow.add(require('./entity_encode.js'));
-Flow.add(require('./entity_decode.js'));
-Flow.add(require('./generator.js'));
-Flow.add(require('./file_gzip.js'));
-Flow.add(require('./regex_replace.js'));
-Flow.add(require('./truthy.js'));
-Flow.add(require('./falsy.js'));
-Flow.add(require('./delta_gate.js'));
-Flow.add(require('./has_files.js'));
-Flow.add(require('./dedup.js'));
+    Flow = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;

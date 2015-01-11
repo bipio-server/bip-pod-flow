@@ -17,46 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function DeltaGate() {
-  this.name = 'delta_gate';
-  this.title = 'Delta Gate',
-  this.description = "Continues processing if a value you're tracking changes",
-  this.trigger = false;
-  this.singleton = false;
-}
+function DeltaGate() {}
 
 DeltaGate.prototype = {};
-
-DeltaGate.prototype.getSchema = function() {
-  return {
-    'imports' : {
-      properties : {
-        'key' : {
-          type : "string",
-          description : "Unique Key"
-        },
-        'value' : {
-          type : "string",
-          description : "Tracking Value"
-        },
-        "delta_precision" : {
-          type : "number",
-          description : "Floating Point Delta Precision",
-          "default" : 1
-        }
-      },
-      required : [ 'key' ]
-    },
-    "exports" : {
-      "properties" : {
-        "delta" : {
-          type : "string",
-          description : "Delta"
-        }
-      }
-    }
-  }
-}
 
 DeltaGate.prototype.teardown = function(channel, accountInfo, next) {
   var $resource = this.$resource,
@@ -83,7 +46,7 @@ DeltaGate.prototype.invoke = function(imports, channel, sysImports, contentParts
       key : imports.key
     },
     props = {
-      last_update : app.helper.nowUTCSeconds(),
+      last_update : $resource.helper.nowUTCMS(),
       owner_id : channel.owner_id,
       channel_id : channel.id,
       key : imports.key,

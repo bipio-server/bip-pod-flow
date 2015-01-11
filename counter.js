@@ -21,47 +21,9 @@
  */
 
 function Counter() {
-  this.name = 'counter';
-  this.title = 'Counter',
-  this.description = 'A simple accumulator, +1 every time the channel is invoked',
-  this.trigger = false;
-  this.singleton = false;
 }
 
 Counter.prototype = {};
-
-Counter.prototype.getSchema = function() {
-  return {
-    'imports' : {
-      properties : {
-        'group_by' : {
-          type : "string",
-          description : "Group By"
-        },
-        'increment_by' : {
-          type : "integer",
-          description : "Increment By",
-          "default" : 1
-        }
-      }
-    },
-    'exports' : {
-      properties : {
-        'new_count' : {
-          type : "integer",
-          description : "New Count"
-        }
-      }
-    },
-    'renderers' : {
-      'get_count' : {
-        description : 'Get Count',
-        description_long : 'Gets Current Count and Last Update Time',
-        contentType : DEFS.CONTENTTYPE_JSON
-      }
-    }
-  }
-}
 
 Counter.prototype.setup = function(channel, accountInfo, next) {
   var $resource = this.$resource,
@@ -74,7 +36,7 @@ Counter.prototype.setup = function(channel, accountInfo, next) {
     var counterStruct = {
       owner_id : channel.owner_id,
       channel_id : channel.id,
-      last_update : app.helper.nowUTCSeconds(),
+      last_update : $resource.helper.nowUTCMS(),
       counter : 0
     }
 
@@ -130,7 +92,7 @@ Counter.prototype.rpc = function(method, sysImports, options, channel, req, res)
           log(err, 'channel', 'error');
           res.send(500);
         } else {
-          res.contentType(self.getSchema().renderers[method].contentType);
+          res.contentType(self.pod.getActionRPC(self.name, method).contentType);
           res.send(results);
         }
       }
@@ -152,7 +114,7 @@ Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       group : imports.group_by
     },
   setter = {
-    last_update : app.helper.nowUTCSeconds()
+    last_update : $resource.helper.nowUTCMS()
   },
   inc = imports.increment_by || 1;
 
@@ -160,39 +122,13 @@ Counter.prototype.invoke = function(imports, channel, sysImports, contentParts, 
     setter.group = imports.group_by;
   }
 
-  dao.accumulateFilter(modelName, filter, 'count', setter, function(err) {
+  $resource.accumulateFilter('counter', filter, setter, inc, function(err, newCount) {
     if (err) {
       next(err);
     } else {
-      // check if it was an upsert and give it an id if none present (yuck)
-      dao.find(modelName, filter, function(err, result) {
-        if (err) {
-          next(err);
-        } else {
-          // pretty gross, is there a better way?
-          if (!result.id) {
-            dao.updateColumn(
-              modelName,
-              filter,
-              {
-                id : app.helper.uuid().v4(),
-                created : app.helper.nowUTCSeconds()
-              },
-              function(err) {
-                if (err) {
-                  next(err);
-                } else {
-                  next(false, { new_count : result.count });
-                }
-              }
-            );
-          } else {
-            next(false, { new_count : result.count });
-          }
-        }
-      });
+      next(false, { new_count : newCount });
     }
-  }, inc);
+  });
 }
 
 // -----------------------------------------------------------------------------
