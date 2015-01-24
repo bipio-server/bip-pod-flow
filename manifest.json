@@ -207,10 +207,12 @@
           }
         },
         "required": [
-          "body", "split_by"
+          "body",
+          "split_by"
         ],
         "disposition": [
-          "body", "split_by"
+          "body",
+          "split_by"
         ]
       }
     },
@@ -414,7 +416,10 @@
             "description": "Replace String"
           }
         },
-        "required" : [ "in_str", "regex" ],
+        "required": [
+          "in_str",
+          "regex"
+        ],
         "disposition": [
           "in_str",
           "regex",
@@ -645,5 +650,8 @@
         "key"
       ]
     }
-  }
+  },
+  "tags": [
+    "productivity"
+  ]
 }
