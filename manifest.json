@@ -1,6 +1,6 @@
 {
   "name": "flow",
-  "title": "Flow",
+  "title": "Flow Control",
   "description": "Control flows, filtering, token generation for hubs, inline",
   "url": "",
   "trackDuplicates": true,
@@ -11,7 +11,7 @@
   "rpcs": {},
   "actions": {
     "match": {
-      "title": "Filter messages by a search pattern",
+      "title": "Pattern Filter",
       "description": "Conditionally forwards or discards messages matching certain search patterns",
       "trigger": "invoke",
       "config": {
@@ -217,7 +217,7 @@
       }
     },
     "blackhole": {
-      "title": "Blackhole",
+      "title": "Do Nothing",
       "description": "Drops a message on the floor. Ends delivery",
       "trigger": "invoke",
       "config": {
@@ -232,7 +232,7 @@
       }
     },
     "counter": {
-      "title": "Counter",
+      "title": "Record A Count",
       "description": "A simple accumulator, +1 every time the channel is invoked",
       "trigger": "invoke",
       "config": {
@@ -273,7 +273,7 @@
       }
     },
     "text2json": {
-      "title": "Text to JSON",
+      "title": "Convert Text to JSON",
       "descriptio n": "Converts a JSON text body into its equivalent export",
       "trigger": "invoke",
       "config": {
@@ -345,7 +345,7 @@
     },
     "generator": {
       "title": "Generate a Payload",
-      "description": "Generates a Payload that can be processed by a Trigger Bip",
+      "description": "Periodically Generates A Static Payload",
       "trigger": "poll",
       "config": {
         "properties": {
@@ -516,7 +516,7 @@
       }
     },
     "has_files": {
-      "title": "If A File Is Present",
+      "title": "When A File Is Present",
       "description": "Conditionally forward a message when a file is present",
       "trigger": "invoke",
       "config": {
