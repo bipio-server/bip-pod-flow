@@ -18,13 +18,13 @@
         "properties": {
           "accept_on": {
             "type": "string",
-            "description": "Accept if content matches",
-            "optional": true
+            "optional": true,
+            "title": "Accept if content matches"
           },
           "discard_on": {
             "type": "string",
-            "description": "Discard if content matches",
-            "optional": true
+            "optional": true,
+            "title": "Discard if content matches"
           }
         },
         "disposition": [
@@ -39,17 +39,17 @@
         "properties": {
           "accept_on": {
             "type": "string",
-            "description": "Accept if content matches",
-            "optional": true
+            "optional": true,
+            "title": "Accept if content matches"
           },
           "discard_on": {
             "type": "string",
-            "description": "Discard if content matches",
-            "optional": true
+            "optional": true,
+            "title": "Discard if content matches"
           },
           "funnel": {
             "type": "string",
-            "description": "Content Funnel.  If empty, matches any import"
+            "title": "Content Funnel.  If empty, matches any import"
           }
         },
         "disposition": [
@@ -73,7 +73,7 @@
       "imports": {
         "properties": {
           "body": {
-            "description": "XML Message Body"
+            "title": "XML Message Body"
           }
         },
         "disposition": [
@@ -93,7 +93,7 @@
         "properties": {
           "nonce": {
             "type": "string",
-            "description": "random string"
+            "title": "random string"
           }
         }
       },
@@ -113,15 +113,15 @@
         "properties": {
           "key": {
             "type": "string",
-            "description": "Source Key"
+            "title": "Source Key"
           },
           "index": {
             "type": "integer",
-            "description": "Item Offset"
+            "title": "Item Offset"
           },
           "value": {
             "type": "mixed",
-            "description": "Key Value"
+            "title": "Key Value"
           }
         }
       },
@@ -129,7 +129,7 @@
         "properties": {
           "rows": {
             "type": "string",
-            "description": "JSON Object"
+            "title": "JSON Object"
           }
         },
         "required": [
@@ -152,11 +152,11 @@
         "properties": {
           "index": {
             "type": "integer",
-            "description": "Line Number"
+            "title": "Line Number"
           },
           "value": {
             "type": "string",
-            "description": "Line Value"
+            "title": "Line Value"
           }
         }
       },
@@ -164,7 +164,7 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "Text Body"
+            "title": "Text Body"
           }
         },
         "required": [
@@ -187,11 +187,11 @@
         "properties": {
           "index": {
             "type": "integer",
-            "description": "Line Number"
+            "title": "Line Number"
           },
           "value": {
             "type": "string",
-            "description": "Line Value"
+            "title": "Line Value"
           }
         }
       },
@@ -199,11 +199,11 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "Text Body"
+            "title": "Text Body"
           },
           "split_by": {
             "type": "string",
-            "description": "Separator String"
+            "title": "Separator String"
           }
         },
         "required": [
@@ -243,7 +243,7 @@
         "properties": {
           "new_count": {
             "type": "integer",
-            "description": "New Count"
+            "title": "New Count"
           }
         }
       },
@@ -251,12 +251,12 @@
         "properties": {
           "group_by": {
             "type": "string",
-            "description": "Group By"
+            "title": "Group By"
           },
           "increment_by": {
             "type": "integer",
-            "description": "Increment By",
-            "default": 1
+            "default": 1,
+            "title": "Increment By"
           }
         },
         "disposition": [
@@ -286,7 +286,7 @@
       "imports": {
         "properties": {
           "body": {
-            "description": "JSON String"
+            "title": "JSON String"
           }
         },
         "required": [
@@ -312,7 +312,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "description": "Content Funnel.  If empty, encodes all adjacent imports"
+            "title": "Content Funnel.  If empty, encodes all adjacent imports"
           }
         },
         "disposition": [
@@ -335,7 +335,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "description": "Content Funnel.  If empty, decodes all adjacent imports"
+            "title": "Content Funnel.  If empty, decodes all adjacent imports"
           }
         },
         "disposition": [
@@ -351,7 +351,7 @@
         "properties": {
           "payload": {
             "type": "string",
-            "description": "Payload"
+            "title": "Payload"
           }
         },
         "disposition": [
@@ -362,7 +362,7 @@
         "properties": {
           "payload": {
             "type": "string",
-            "description": "Payload"
+            "title": "Payload"
           }
         }
       },
@@ -397,7 +397,7 @@
         "properties": {
           "out_str": {
             "type": "string",
-            "description": "Output String"
+            "title": "Output String"
           }
         }
       },
@@ -405,15 +405,15 @@
         "properties": {
           "in_str": {
             "type": "string",
-            "description": "Input String"
+            "title": "Input String"
           },
           "regex": {
             "type": "string",
-            "description": "Regular Expression"
+            "title": "Regular Expression"
           },
           "repl_str": {
             "type": "string",
-            "description": "Replace String"
+            "title": "Replace String"
           }
         },
         "required": [
@@ -442,7 +442,7 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "Input Value"
+            "title": "Input Value"
           }
         },
         "disposition": [
@@ -465,7 +465,7 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "Input Value"
+            "title": "Input Value"
           }
         },
         "disposition": [
@@ -485,7 +485,7 @@
         "properties": {
           "delta": {
             "type": "string",
-            "description": "Delta"
+            "title": "Delta"
           }
         }
       },
@@ -493,16 +493,16 @@
         "properties": {
           "key": {
             "type": "string",
-            "description": "Unique Key"
+            "title": "Unique Key"
           },
           "value": {
             "type": "string",
-            "description": "Tracking Value"
+            "title": "Tracking Value"
           },
           "delta_precision": {
             "type": "number",
-            "description": "Floating Point Delta Precision",
-            "default": 1
+            "default": 1,
+            "title": "Floating Point Delta Precision"
           }
         },
         "required": [
@@ -523,7 +523,7 @@
         "properties": {
           "extension": {
             "type": "string",
-            "description": "File Extension (Optional)"
+            "title": "File Extension (Optional)"
           }
         },
         "disposition": [
@@ -552,7 +552,7 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "New Value"
+            "title": "New Value"
           }
         },
         "required": [
