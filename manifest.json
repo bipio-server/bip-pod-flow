@@ -41,7 +41,7 @@
         "properties": {
            "funnel": {
             "type": "string",
-            "title": "Search For",
+            "title": "Search On",
             "description" : "When Empty, Matches Any Attribute"
           },
           "accept_on": {
