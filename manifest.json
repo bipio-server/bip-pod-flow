@@ -12,19 +12,21 @@
   "actions": {
     "match": {
       "title": "Pattern Filter",
-      "description": "Conditionally forwards or discards messages matching certain search patterns",
+      "description": "Conditionally Forward Or Discard Messages",
       "trigger": "invoke",
       "config": {
         "properties": {
           "accept_on": {
             "type": "string",
             "optional": true,
-            "title": "Accept if content matches"
+            "title": "Accept Match",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
           },
           "discard_on": {
             "type": "string",
             "optional": true,
-            "title": "Discard if content matches"
+            "title": "Discard Match",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
           }
         },
         "disposition": [
@@ -37,19 +39,22 @@
       },
       "imports": {
         "properties": {
+           "funnel": {
+            "type": "string",
+            "title": "Search For",
+            "description" : "When Empty, Matches Any Attribute"
+          },
           "accept_on": {
             "type": "string",
             "optional": true,
-            "title": "Accept if content matches"
+            "title": "Accept Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
           },
           "discard_on": {
             "type": "string",
             "optional": true,
-            "title": "Discard if content matches"
-          },
-          "funnel": {
-            "type": "string",
-            "title": "Content Funnel.  If empty, matches any import"
+            "title": "Discard Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
           }
         },
         "disposition": [
@@ -61,7 +66,7 @@
     },
     "xml2json": {
       "title": "Convert XML to JSON",
-      "description": "Given an XML document, converts it to usable JSON exports",
+      "description": "Converts An XML Document Into JSON",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -73,7 +78,7 @@
       "imports": {
         "properties": {
           "body": {
-            "title": "XML Message Body"
+            "title": "XML"
           }
         },
         "disposition": [
@@ -82,8 +87,8 @@
       }
     },
     "nonce": {
-      "title": "Generate a Random String",
-      "description": "Generate a Random 64 bit string",
+      "title": "Generate A Random String",
+      "description": "Generate A Random 64 Bit String",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -93,7 +98,7 @@
         "properties": {
           "nonce": {
             "type": "string",
-            "title": "random string"
+            "title": "Random String"
           }
         }
       },
@@ -102,8 +107,8 @@
       }
     },
     "ksplit": {
-      "title": "Splits a JSON document by row",
-      "description": "Given an JSON document, generates an export for each row",
+      "title": "Split JSON By Row",
+      "description": "Exports Every Row Or Hash Key For An Object",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -128,7 +133,7 @@
       "imports": {
         "properties": {
           "rows": {
-            "type": "string",
+            "type": "object",
             "title": "JSON Object"
           }
         },
@@ -142,7 +147,7 @@
     },
     "lsplit": {
       "title": "Split Text by Line",
-      "description": "Generates an export for every line in a text document (Windows/Mac/Linux)",
+      "description": "Export Every Line In A Text Document Individually (Windows/Mac/Linux)",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -164,7 +169,7 @@
         "properties": {
           "body": {
             "type": "string",
-            "title": "Text Body"
+            "title": "Text"
           }
         },
         "required": [
@@ -177,7 +182,7 @@
     },
     "str_split": {
       "title": "Split Text by String",
-      "description": "Generates an export for every line in a text document, split by custom delimiter",
+      "description": "Export Every Line In A Text Document Individually, Split By Custom Delimiter",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -199,7 +204,7 @@
         "properties": {
           "body": {
             "type": "string",
-            "title": "Text Body"
+            "title": "Text"
           },
           "split_by": {
             "type": "string",
@@ -218,7 +223,7 @@
     },
     "blackhole": {
       "title": "Do Nothing",
-      "description": "Drops a message on the floor. Ends delivery",
+      "description": "Great For Testing",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -233,7 +238,7 @@
     },
     "counter": {
       "title": "Record A Count",
-      "description": "A simple accumulator, +1 every time the channel is invoked",
+      "description": "Increment A Counter By Custom Group",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -256,7 +261,7 @@
           "increment_by": {
             "type": "integer",
             "default": 1,
-            "title": "Increment By"
+            "title": "Increment By #"
           }
         },
         "disposition": [
@@ -274,7 +279,7 @@
     },
     "text2json": {
       "title": "Convert Text to JSON",
-      "descriptio n": "Converts a JSON text body into its equivalent export",
+      "description": "Converts A JSON String To JSON Object",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -299,7 +304,7 @@
     },
     "entity_encode": {
       "title": "HTML Entity Encode",
-      "description": "Encodes HTML Entities, strips &lt;script&gt; tags and XSS",
+      "description": "Encodes HTML Entities, Strips &lt;script&gt; Tags And XSS",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -312,7 +317,8 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "title": "Content Funnel.  If empty, encodes all adjacent imports"
+            "title": "Encode Attributes",
+            "description" : "If Empty, Encodes All Attributes"
           }
         },
         "disposition": [
@@ -335,7 +341,8 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "title": "Content Funnel.  If empty, decodes all adjacent imports"
+            "title": "Decode Attributes",
+            "description" : "If Empty, Decodes All Attributes"
           }
         },
         "disposition": [
@@ -345,7 +352,7 @@
     },
     "generator": {
       "title": "Generate a Payload",
-      "description": "Periodically Generates A Static Payload",
+      "description": "Periodically Generate A Static Payload",
       "trigger": "poll",
       "config": {
         "properties": {
@@ -372,7 +379,7 @@
     },
     "file_gzip": {
       "title": "GZip Files",
-      "description": "Any files present will be replaced with their GZipped equivalent",
+      "description": "Replace Any Present File With A GZipped Equivalent",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -405,15 +412,16 @@
         "properties": {
           "in_str": {
             "type": "string",
-            "title": "Input String"
+            "title": "Input"
           },
           "regex": {
             "type": "string",
-            "title": "Regular Expression"
+            "title": "Match Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
           },
           "repl_str": {
             "type": "string",
-            "title": "Replace String"
+            "title": "Replace With"
           }
         },
         "required": [
@@ -429,7 +437,7 @@
     },
     "truthy": {
       "title": "Input is Truthy",
-      "description": "Conditionally forwards a message if the input has a true-like value",
+      "description": "Continue Only If Input Has A True-like Value",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -442,9 +450,13 @@
         "properties": {
           "value": {
             "type": "string",
-            "title": "Input Value"
+            "title": "Input",
+            "description" : "Continues When 1, yes, y or true"
           }
         },
+        "required" : [
+          "value"
+        ],
         "disposition": [
           "value"
         ]
@@ -452,7 +464,7 @@
     },
     "falsy": {
       "title": "Input is Falsy",
-      "description": "Conditionally forwards a message if the input has a false-like value",
+      "description": "Continue Only If Input Has A False-like Value",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -465,17 +477,21 @@
         "properties": {
           "value": {
             "type": "string",
-            "title": "Input Value"
+            "title": "Input",
+            "description" : "Continues When 0, no, n or false"
           }
         },
+        "required" : [
+          "value"
+        ],
         "disposition": [
           "value"
         ]
       }
     },
     "delta_gate": {
-      "title": "Delta Gate",
-      "description": "Continues processing if a value you're tracking changes",
+      "title": "When Something Changes",
+      "description": "Continue Only When A Value Changes",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -493,11 +509,13 @@
         "properties": {
           "key": {
             "type": "string",
-            "title": "Unique Key"
+            "title": "Key Name",
+            "description" : "Name Of The Value To Track"
           },
           "value": {
             "type": "string",
-            "title": "Tracking Value"
+            "title": "Tracking Value",
+            "description" : "Actual Value"
           },
           "delta_precision": {
             "type": "number",
@@ -517,13 +535,13 @@
     },
     "has_files": {
       "title": "When A File Is Present",
-      "description": "Conditionally forward a message when a file is present",
+      "description": "Continue Only When A File Is Present",
       "trigger": "invoke",
       "config": {
         "properties": {
           "extension": {
             "type": "string",
-            "title": "File Extension (Optional)"
+            "title": "File Extension"
           }
         },
         "disposition": [
@@ -539,7 +557,7 @@
     },
     "dedup": {
       "title": "De-Duplicate",
-      "description": "Ignores Values which have been seen before",
+      "description": "Ignore Values which have been seen before",
       "trigger": "invoke",
       "config": {
         "properties": {},
