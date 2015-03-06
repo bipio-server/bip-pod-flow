@@ -1,10 +1,9 @@
 /**
  *
- * The Bipio Flow Pod.  blackhole action definition
+ * The Bipio Flow Pod.  console action definition
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2014-2015 wot.io http://wot.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

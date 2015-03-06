@@ -609,8 +609,9 @@
       }
     },
     "console": {
+      "disabled" : true,
       "title": "Log to Console",
-      "description": "Logs to Console & passes Message along.",
+      "description": "Logs to System Console & passes Message along.",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -620,7 +621,7 @@
         "properties": {
           "exported": {
             "type": "object",
-            "title":"Consoled Message",
+            "title":"Consoled Message"
           }
         }
       },
