@@ -607,6 +607,31 @@
           "value"
         ]
       }
+    },
+    "console": {
+      "title": "Log to Console",
+      "description": "Logs to Console & passes Message along.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "exported": {
+            "type": "object",
+            "title":"Consoled Message",
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "imported": {
+            "type": "object",
+            "title": "Message to Send to Console"
+          }
+        }
+      }
     }
   },
   "dataSources": {
