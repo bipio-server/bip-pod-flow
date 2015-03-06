@@ -392,6 +392,33 @@
         "properties": {}
       }
     },
+    "file_rename": {
+      "title": "Rename File",
+      "description": "Renames A File",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "file_new_name" : {
+            "type" : "string",
+            "title" : "New Filename",
+            "description" : "Be Careful That Multiple Files Don't Have The Same Name!"
+          }
+        },
+        "required" : [
+          "file_new_name"
+        ],
+        "disposition" : [
+          "file_new_name"
+        ]
+      }
+    },
     "regex_replace": {
       "title": "Regex Replace",
       "description": "Replace a String by Regulr Expression",
