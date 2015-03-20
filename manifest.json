@@ -419,6 +419,38 @@
         ]
       }
     },
+    "file_create_text": {
+      "title": "Create A Text File",
+      "description": "Creates A Text File",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "contents" : {
+            "type" : "string",
+            "title" : "Contents"
+          },
+          "file_name" : {
+            "type" : "string",
+            "title" : "Target File Name"
+          }
+        },
+        "required" : [
+          "contents",
+          "file_name"
+        ],
+        "disposition" : [
+          "contents",
+          "file_name"
+        ]
+      }
+    },
     "regex_replace": {
       "title": "Regex Replace",
       "description": "Replace a String by Regulr Expression",
