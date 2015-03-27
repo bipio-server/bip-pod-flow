@@ -38,7 +38,8 @@ LineSplitter.prototype.invoke = function(imports, channel, sysImports, contentPa
         false,
         {
           index : i,
-          value : line
+          value : line,
+          num_lines : lines.length
         }
       );
     }

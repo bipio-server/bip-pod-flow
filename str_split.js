@@ -38,7 +38,8 @@ StringSplitter.prototype.invoke = function(imports, channel, sysImports, content
         false,
         {
           index : i,
-          value : line
+          value : line,
+          num_lines : lines.length
         }
       );
     }

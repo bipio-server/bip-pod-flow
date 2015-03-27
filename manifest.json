@@ -162,6 +162,10 @@
           "value": {
             "type": "string",
             "title": "Line Value"
+          },
+          "num_lines": {
+            "title" : "# Lines",
+            "type": "string"
           }
         }
       },
@@ -197,6 +201,10 @@
           "value": {
             "type": "string",
             "title": "Line Value"
+          },
+          "num_lines": {
+            "type": "string",
+            "title": "# Lines"
           }
         }
       },
@@ -453,7 +461,7 @@
     },
     "regex_replace": {
       "title": "Regex Replace",
-      "description": "Replace a String by Regulr Expression",
+      "description": "Replace a String by Regular Expression",
       "trigger": "invoke",
       "config": {
         "properties": {},
