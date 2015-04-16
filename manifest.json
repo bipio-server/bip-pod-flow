@@ -385,6 +385,53 @@
         "properties": {}
       }
     },
+    "detect_files": {
+      "title": "Detect Files",
+      "description": "detect files if they match a file extension",
+      "trigger": "invoke",
+      "config": {
+        "properties": {          
+	         "extension" : {
+	            "type" : "string",
+	            "title" : "File Extension",
+	            "default": "txt,csv,mkd"
+         	 }
+          },
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+           "body": {
+            "type": "string",
+            "title": "File Body"
+          },
+           "name": {
+            "type": "string",
+            "title": "File Name"
+          },
+           "size": {
+            "type": "string",
+            "title": "File Length"
+          },
+           "extension": {
+            "type": "string",
+            "title": "extension"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+         "extension" : {
+            "type" : "string",
+            "title" : "File Extension",
+            "default": "txt,csv,mkd"
+          }
+        },
+        "disposition" : [
+          "file_extension"
+        ]
+      }
+    },
     "file_gzip": {
       "title": "GZip Files",
       "description": "Replace Any Present File With A GZipped Equivalent",
