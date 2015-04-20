@@ -388,7 +388,7 @@
     "detect_files": {
       "title": "Detect Files",
       "description": "detect files if they match a file extension",
-      "trigger": "invoke", 
+      "trigger": "invoke",
       "config": {
         "properties": {          
 	         "extension" : {
