@@ -385,50 +385,47 @@
         "properties": {}
       }
     },
-    "detect_files": {
-      "title": "Detect Files",
-      "description": "detect files if they match a file extension",
+    "file_to_text": {
+      "title": "Convert Text File To String",
+      "description": "Extracts The Text From A Text File",
       "trigger": "invoke",
       "config": {
-        "properties": {          
-	         "extension" : {
-	            "type" : "string",
-	            "title" : "File Extension",
-	            "default": "txt,csv,mkd"
-         	 }
-          },
+        "properties": {},
         "definitions": {}
       },
       "exports": {
         "properties": {
            "body": {
             "type": "string",
-            "title": "File Body"
+            "title": "Body"
           },
            "name": {
             "type": "string",
             "title": "File Name"
           },
            "size": {
-            "type": "string",
-            "title": "File Length"
+            "type": "number",
+            "title": "File Size"
           },
            "extension": {
             "type": "string",
-            "title": "extension"
+            "title": "Extension"
           }
         }
       },
       "imports": {
         "properties": {
-         "extension" : {
+          "extension" : {
             "type" : "string",
             "title" : "File Extension",
             "default": "txt,csv,mkd"
           }
         },
+        "required" : [
+          "extension"
+        ],
         "disposition" : [
-          "file_extension"
+          "extension"
         ]
       }
     },
