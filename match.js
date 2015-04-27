@@ -37,7 +37,7 @@ function valueMatch(pattern, val) {
       }
     }
   } else {
-    match = val && reg.test(val);
+    match = val && (reg.test(val) || val == pattern);
   }
 
   return match;
