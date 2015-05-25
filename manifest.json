@@ -104,7 +104,8 @@
       },
       "imports": {
         "properties": {}
-      }
+      },
+      "disposition": []
     },
     "ksplit": {
       "title": "Split JSON By Row",
@@ -235,14 +236,16 @@
       "trigger": "invoke",
       "config": {
         "properties": {},
-        "definitions": {}
+        "definitions": {},
+        "disposition": []
       },
       "exports": {
         "properties": {}
       },
       "imports": {
         "properties": {}
-      }
+      },
+      "disposition": []
     },
     "counter": {
       "title": "Record A Count",
@@ -382,7 +385,8 @@
         }
       },
       "imports": {
-        "properties": {}
+        "properties": {},
+        "disposition": []
       }
     },
     "file_to_text": {
@@ -435,13 +439,15 @@
       "trigger": "invoke",
       "config": {
         "properties": {},
-        "definitions": {}
+        "definitions": {},
+        "disposition": []
       },
       "exports": {
         "properties": {}
       },
       "imports": {
-        "properties": {}
+        "properties": {},
+        "disposition": []
       }
     },
     "file_rename": {
@@ -663,7 +669,8 @@
         "properties": {}
       },
       "imports": {
-        "properties": {}
+        "properties": {},
+        "disposition": []
       }
     },
     "dedup": {
