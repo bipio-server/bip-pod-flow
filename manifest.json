@@ -101,6 +101,10 @@
             "title": "Random String"
           }
         }
+        ,
+        "disposition": [
+       		"nonce"
+       		]
       },
       "imports": {
         "properties": {}
@@ -382,7 +386,10 @@
             "type": "string",
             "title": "Payload"
           }
-        }
+        },
+        "disposition": [
+          "payload"
+        ]
       },
       "imports": {
         "properties": {},
