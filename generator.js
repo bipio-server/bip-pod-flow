@@ -34,7 +34,7 @@ Generator.prototype.trigger = function() {
  */
 Generator.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   next(false, {
-    'payload' : channel.config.payload
+    'payload' : imports.payload
   });
 }
 

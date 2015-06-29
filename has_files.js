@@ -34,20 +34,20 @@ HasFiles.prototype.invoke = function(imports, channel, sysImports, contentParts,
   if (contentParts._files && contentParts._files.length) {
     for (var i = 0; i < contentParts._files.length; i++) {
       file = contentParts._files[i];
-      if (channel.config.extension) {
-        extRegExp = new RegExp(channel.config.extension, 'i');
+      if (imports.extension) {
+        extRegExp = new RegExp(imports.extension, 'i');
 
         if (extRegExp.test(file.name)) {
           fileMatch = true;
           break;
         }
 
-      } else if ('image' === channel.config.extension) {
+      } else if ('image' === imports.extension) {
         if (0 === file.type.indexOf('image')) {
           fileMatch = true;
           break;
         }
-      } else if (!channel.config.extension) {
+      } else if (!imports.extension) {
         fileMatch = true;
         break;
       }

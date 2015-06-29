@@ -50,8 +50,8 @@ Match.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
   var exports = imports,
   validRegex = false,
   pass,
-  acceptOn = imports.accept_on || channel.config.accept_on,
-  discardOn = imports.discard_on || channel.config.discard_on,
+  acceptOn = imports.accept_on,
+  discardOn = imports.discard_on,
   matchOn = imports.funnel || imports;
 
   if (!acceptOn && !discardOn) {
