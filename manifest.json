@@ -195,7 +195,8 @@
       "trigger": "invoke",
       "config": {
         "properties": {},
-        "definitions": {}
+        "definitions": {},
+        "disposition": []
       },
       "exports": {
         "properties": {
@@ -247,9 +248,10 @@
         "properties": {}
       },
       "imports": {
-        "properties": {}
-      },
-      "disposition": []
+        "properties": {},
+        "disposition": []
+      }
+
     },
     "counter": {
       "title": "Record A Count",
