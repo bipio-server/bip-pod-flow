@@ -29,8 +29,12 @@ Text2JSON.prototype = {};
  */
 Text2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   try {
-    var exports = JSON.parse(imports.body.replace(/\n/g, ''));
-    next(false, exports);
+  	if (this.$resource.helper.isObject(imports.body)) {
+  		next(false, imports.body);
+  	} else {
+	    var exports = JSON.parse(imports.body.replace(/\n/g, ''));
+	    next(false, exports);
+   }
   } catch (e) {
     this.$resource.log('parse error ' + e, channel, 'error');
     next(true);
