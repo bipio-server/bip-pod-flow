@@ -195,8 +195,7 @@
       "trigger": "invoke",
       "config": {
         "properties": {},
-        "definitions": {},
-        "disposition": []
+        "definitions": {}
       },
       "exports": {
         "properties": {
@@ -248,10 +247,9 @@
         "properties": {}
       },
       "imports": {
-        "properties": {},
-        "disposition": []
-      }
-
+        "properties": {}
+      },
+      "disposition": []
     },
     "counter": {
       "title": "Record A Count",
@@ -731,7 +729,10 @@
             "type": "object",
             "title": "Message to Send to Console"
           }
-        }
+        },
+        "disposition" : [
+          "imported"
+        ]
       }
     }
   },
