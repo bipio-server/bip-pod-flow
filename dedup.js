@@ -22,9 +22,7 @@ function DeDup() {}
 DeDup.prototype = {};
 
 DeDup.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.value) {
-    this.$resource.dupFilter(imports, 'value', channel, sysImports, next);
-  }
+  this.$resource.dupFilter(imports, 'value', channel, sysImports, next);
 }
 
 // -----------------------------------------------------------------------------

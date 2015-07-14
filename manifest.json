@@ -78,9 +78,13 @@
       "imports": {
         "properties": {
           "body": {
+            "type" : "text",
             "title": "XML"
           }
         },
+        "required": [
+          "body"
+        ],
         "disposition": [
           "body"
         ]
@@ -306,7 +310,8 @@
       "imports": {
         "properties": {
           "body": {
-            "title": "JSON String"
+            "title": "JSON String",
+            "type" : "text"
           }
         },
         "required": [
