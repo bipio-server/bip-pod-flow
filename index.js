@@ -19,7 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Flow = new Pod();
+    Flow = new Pod(),
+    genSchema = require('generate-schema');
+
+Flow.rpc = function(action, method, sysImports, options, channel, req, res) {
+	var self = this;
+
+  if (method == 'json_to_schema' && 'POST' === req.method) {
+  	try {
+  		var schema = genSchema.json(req.body);
+  		res.contentType(self.getRPCs(method).contentType);
+			res.status(200).send(schema);
+  	} catch (e) {
+  		res.send(500).end();
+  	}
+
+  } else {
+    this.__proto__.rpc.apply(this, arguments);
+  }
+}
 
 // -----------------------------------------------------------------------------
 module.exports = Flow;

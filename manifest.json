@@ -8,7 +8,13 @@
   "auth": {
     "strategy": "none"
   },
-  "rpcs": {},
+  "rpcs": {
+    "json_to_schema"   : {
+      "contentType" : "application/json",
+      "title" : "Convert JSON Struct to JSON Schema",
+      "method" : "POST"
+    }
+  },
   "actions": {
     "match": {
       "title": "Pattern Filter",
