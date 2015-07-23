@@ -266,18 +266,6 @@
       "description": "Increment A Counter By Custom Group",
       "trigger": "invoke",
       "config": {
-        "properties": {},
-        "definitions": {}
-      },
-      "exports": {
-        "properties": {
-          "new_count": {
-            "type": "integer",
-            "title": "New Count"
-          }
-        }
-      },
-      "imports": {
         "properties": {
           "group_by": {
             "type": "string",
@@ -289,9 +277,28 @@
             "title": "Increment By #"
           }
         },
+        "definitions": {},
         "disposition": [
           "group_by",
           "increment_by"
+        ],
+        "required": [
+          "group_by",
+          "increment_by"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "new_count": {
+            "type": "integer",
+            "title": "New Count"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "disposition": [
         ]
       },
       "rpcs": {
@@ -629,20 +636,8 @@
       "description": "Continue Only When A Value Changes",
       "trigger": "invoke",
       "config": {
-        "properties": {},
-        "definitions": {}
-      },
-      "exports": {
         "properties": {
-          "delta": {
-            "type": "string",
-            "title": "Delta"
-          }
-        }
-      },
-      "imports": {
-        "properties": {
-          "key": {
+        "key": {
             "type": "string",
             "title": "Key Name",
             "description" : "Name Of The Value To Track"
@@ -658,14 +653,28 @@
             "title": "Floating Point Delta Precision"
           }
         },
+        "definitions": {},
         "required": [
-          "key"
+          "key",
+          "value"
         ],
         "disposition": [
           "key",
           "value",
           "delta_precision"
         ]
+      },
+      "exports": {
+        "properties": {
+          "delta": {
+            "type": "string",
+            "title": "Delta"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
       }
     },
     "has_files": {
