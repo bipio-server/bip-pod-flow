@@ -30,22 +30,35 @@ KeySplitter.prototype = {};
 KeySplitter.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.rows) {
     var rows = imports.rows;
-    if (Object.keys(rows).length > 0) {
-      if (rows.hasOwnProperty(key)) {
-        var i = 0;
-        for (var key in rows) {
-          if (rows.hasOwnProperty(key)) {
-            next(
-              false,
-              {
-                index : i,
-                key : key,
-                value : rows[key]
-              }
-            );
-            i++;
+    if (this.$resource.helper.isObject(imports.rows)) {
+      if (Object.keys(rows).length > 0) {
+        if (rows.hasOwnProperty(key)) {
+          var i = 0;
+          for (var key in rows) {
+            if (rows.hasOwnProperty(key)) {
+              next(
+                false,
+                {
+                  index : i,
+                  key : key,
+                  value : rows[key]
+                }
+              );
+              i++;
+            }
           }
         }
+      }
+    } else if (this.$resource.helper.isArray(imports.rows)) {
+      for (var i = 0; i < imports.rows.length; i++) {
+        next(
+          false,
+          {
+            index : i,
+            key : i,
+            value : imports.rows[i]
+          }
+        );
       }
     }
   }
