@@ -79,7 +79,12 @@
         "definitions": {}
       },
       "exports": {
-        "properties": {}
+        "properties": {
+          "json" : {
+            "type" : "object",
+            "title" : "JSON Object"
+          }
+        }
       },
       "imports": {
         "properties": {

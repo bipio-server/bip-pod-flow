@@ -33,7 +33,7 @@ XML2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts,
     try {
         var json = xml2json.toJson(imports.body, { object : true});
         if (json) {
-            next(false, json);
+            next(false, { json : json });
         } else {
             next(true, 'Payload could not be parsed');
         }
@@ -43,4 +43,4 @@ XML2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts,
 }
 
 // -----------------------------------------------------------------------------
-module.exports = XML2JSON;
+module.exports = XML2JSON
