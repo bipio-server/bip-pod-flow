@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Flow Pod.  generator action definition
+ * The Bipio Flow Pod.  json_to_schema action definition
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <github@m.bip.io>
@@ -20,30 +20,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Generator(podConfig) {
-}
+var genSchema = require('generate-schema');
 
-Generator.prototype = {};
+function JSON2Schema() {}
 
-Generator.prototype.trigger = function() {
-  this.invoke.apply(this, arguments);
-}
+JSON2Schema.prototype = {};
 
-/**
- * Invokes (runs) the action.
- */
-Generator.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	var payload = imports.payload;
-	try {
-		payload = JSON.parse(payload);
-	} catch (e) {
-		// ignore JSON cast on fail
-	}
-
-  next(false, {
-    'payload' : payload
-  });
+JSON2Schema.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+    try {
+        next(
+            false,
+            {
+                object : imports.source,
+                schema : genSchema.json(imports.source)
+            }
+        );
+    } catch (e) {
+        next(e);
+    }
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Generator;
+module.exports = JSON2Schema

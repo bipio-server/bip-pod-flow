@@ -17,7 +17,7 @@
   },
   "actions": {
     "match": {
-      "title": "Pattern Filter",
+      "title": "Match And Filter",
       "description": "Conditionally Forward Or Discard Messages",
       "trigger": "invoke",
       "config": {
@@ -340,6 +340,42 @@
         ]
       }
     },
+    "json2schema": {
+      "disabled" : true,
+      "title": "Get JSON Schema",
+      "description": "Convert JSON Struct to JSON Schema",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "object": {
+            "title": "JSON Object",
+            "type" : "object"
+          },
+          "schema": {
+            "title": "JSON Schema",
+            "type" : "object"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "source": {
+            "title": "JSON Object",
+            "type" : "object"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "disposition": [
+          "source"
+        ]
+      }
+    },
     "entity_encode": {
       "title": "HTML Entity Encode",
       "description": "Encodes HTML Entities, Strips &lt;script&gt; Tags And XSS",
@@ -395,8 +431,9 @@
       "config": {
         "properties": {
           "payload": {
-            "type": "text",
-            "title": "Payload"
+            "type": "mixed",
+            "title": "Payload",
+            "description" : "<a href=\"http://json.org\">JSON</a> Will Automatically Convert To An Object"
           }
         },
         "disposition": [
@@ -406,7 +443,7 @@
       "exports": {
         "properties": {
           "payload": {
-            "type": "string",
+            "type": "mixed",
             "title": "Payload"
           }
         },

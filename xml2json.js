@@ -35,7 +35,7 @@ XML2JSON.prototype.invoke = function(imports, channel, sysImports, contentParts,
         if (json) {
             next(false, { json : json });
         } else {
-            next(true, 'Payload could not be parsed');
+            next('Payload could not be parsed');
         }
     } catch (e) {
         next(e);

@@ -23,5 +23,8 @@
 function BlackHole() {
 }
 
+BlackHole.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+	next();
+}
 // -----------------------------------------------------------------------------
 module.exports = BlackHole;
